@@ -1,0 +1,86 @@
+.main-enter{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #c3e0f1;
+  height: 87vh
+}
+
+.photo-enter {
+  width: 375px;
+  height: 375px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 405px;
+  height: 453px;
+  background-color: white;
+}
+
+.content-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+}
+
+.title-form {
+  font-size: 36px;
+  margin: 0 auto;
+}
+
+.login-block {
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+}
+
+.password-block {
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login, .password {
+  width: 99%;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.btn-enter {
+  width: 149px;
+  height: 40px;
+  margin-left: auto;
+}
+
+.btn-registr {
+  width: 195px;
+  height: 40px;
+  margin-left: auto;
+}
+
+.enter-jump {
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.hide {
+  display: none;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
