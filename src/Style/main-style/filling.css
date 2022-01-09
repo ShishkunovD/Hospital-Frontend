@@ -1,0 +1,72 @@
+.main-page {
+  background-color: #C5E9FF;
+  box-shadow: 0 5px 5px 10px rgba(0, 0, 0, .35);
+  margin-bottom: 10px;
+}
+
+.main-container {
+  width: 95%;
+  height: 122px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.filling {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.name-patient {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-patient__input {
+  max-width: 188px;
+  height: 45px;
+  width: 100%
+}
+
+.doctor {
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor__select {
+    width: 188px;
+    height: 50px;
+  }
+
+.data {
+  display: flex;
+  flex-direction: column;
+}
+
+.data__input {
+  width: 188px;
+  height: 45px;
+}
+
+.complaints {
+  display: flex;
+  flex-direction: column;
+}
+
+.complaints__input {
+  width: 188px;
+  height: 45px;
+}
+
+.add-btn {
+  width: 155px;
+  height: 51px;
+  font-size: 18px;
+  margin-top: auto;
+  cursor: pointer;
+}
+
+span {
+  font-size: 18px;
+}

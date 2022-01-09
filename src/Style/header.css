@@ -1,18 +1,32 @@
 .header {
   width: 100%;
-  max-width: 1600px;
+
   height: 117px;
   background-color: #C5E9FF;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  /* box-shadow: 0 5px 5px -5px rgba(0, 0, 0, .5); */
+  box-shadow: 0 5px 5px 10px rgba(0, 0, 0, .35);
+  margin-bottom: 10px;
 }
 
 .logo {
   margin-left: 44px;
 }
 
+.text-logo {
+  display: flex;
+  align-items: center;
+}
+
 .logoStr {
   margin-left: 75px;
   font-size: 36px;
+}
+
+.button-exit {
+  width: 156px;
+  height: 45px;
+  font-size: 24px;
+  margin-right: 40px;
 }
