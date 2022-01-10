@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Form = ({titleStr, enterStr, enterJump}) => {
+  const auth = useContext(AuthContext);
   const [inputLogin, setInputLogin] = useState();
   const [inputPassword, setInputPassword] = useState();
   const [passwordRepeat, setPasswordRepeat] = useState();
 
+  const login = React.createRef();
   const password = React.createRef();
   const passwordRepeatRef = React.createRef();
 
@@ -95,6 +98,70 @@ const onChangePasswordRepeat = (e) => {
   }
 }
 
+const signIn = async () => {
+  if(inputLogin === 'Login is correctly' && inputPassword === 'Password is correctly') {
+     const resp = await fetch ('http://localhost:8000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-type' : 'application/json;charset=utf-8',
+        'Access-Control-Allow-Origin' : '*'
+      },
+      body: JSON.stringify({
+        "login": login.current.value.trim(),
+        "password": password.current.value.trim()
+      })
+    });
+    
+      if(resp.status !== 200) {
+        console.clear();
+        const result = await resp.json();
+        alert(result.message);
+      } else {
+        console.clear();
+        const result = await resp.json();
+        auth.loginCheck(result.token, result.userId);
+
+        console.log(result);
+      }
+
+  } else {
+    alert('The entered data is not correct');
+  }
+}
+
+const register = async () => {
+  if(inputLogin === 'Login is correctly' && inputPassword === 'Password is correctly' && passwordRepeat === 'Correctly') {
+    const resp = await fetch ('http://localhost:8000/api/auth/registrationsend', {
+      method: 'POST',
+      headers: {
+        'Content-type' : 'application/json;charset=utf-8',
+        'Access-Control-Allow-Origin' : '*'
+      },
+      body: JSON.stringify({
+        "login": login.current.value.trim(),
+        "password": password.current.value.trim()
+      })
+    });
+    if(resp.status !== 200) {
+      console.clear();
+      const result = await resp.json();
+      alert(result.message); 
+    } else {
+      console.clear();
+      const result = await resp.json();
+      alert(result.message);
+      login.current.value = '';
+      password.current.value = '';
+      passwordRepeatRef.current.value = '';
+      setInputLogin('');
+      setInputPassword('');
+      setPasswordRepeat('');
+    }
+  } else {
+    alert('The entered data is not correct');
+  }
+}
+
   return(
     <div className='form'>
       <div className='content-form'>
@@ -102,14 +169,14 @@ const onChangePasswordRepeat = (e) => {
 
         <div className="login-block">
           <span>Login:</span>
-          <input className='login' placeholder='Login' onChange={(e) => {onChangeInputLogin(e)}} onBlur={(e) => {onBlurLogin(e)}}/>
+          <input className='login' placeholder='Login' ref={login} onChange={(e) => {onChangeInputLogin(e)}} onBlur={(e) => {onBlurLogin(e)}}/>
           <span className={inputLogin === 'Login is correctly' ? 'green' : 'red'}>{inputLogin}</span>
 
         </div>
 
         <div className="password-block">
           <span>Password:</span>
-          <input className='password' placeholder='Password' type='text' ref={password} onChange={(e) => {onChangeInputPassword(e); checkMainInput(e)}} onBlur={(e) => {onBlurPassword(e)}} />
+          <input className='password' placeholder='Password'  ref={password} onChange={(e) => {onChangeInputPassword(e); checkMainInput(e)}} onBlur={(e) => {onBlurPassword(e)}} />
           <span className={inputPassword === 'Password is correctly' ? 'green' : 'red'}>{inputPassword}</span>
         </div>
 
@@ -119,7 +186,10 @@ const onChangePasswordRepeat = (e) => {
           <span className={passwordRepeat === 'Correctly' ? 'green' : 'red'}>{passwordRepeat}</span>
         </div>
 
-        {titleStr === 'Войти в систему' ? <button className='btn-enter'>{enterStr}</button> : <button className='btn-registr'>{enterStr}</button>}
+        {titleStr === 'Войти в систему' ? 
+        <button className='btn-enter' onClick={() => {signIn()}}>{enterStr}</button> : 
+        <button className='btn-registr' onClick={() => {register()}}>{enterStr}</button>}
+
         {titleStr === 'Войти в систему' ? 
         <Link className='link' to='/registration'><div className="enter-jump">{enterJump}</div></Link> : 
         <Link className='link' to='/authorization'><div className="enter-jump">{enterJump}</div></Link>}

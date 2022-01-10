@@ -55,12 +55,14 @@
   width: 149px;
   height: 40px;
   margin-left: auto;
+  cursor: pointer;
 }
 
 .btn-registr {
   width: 195px;
   height: 40px;
   margin-left: auto;
+  cursor: pointer;
 }
 
 .enter-jump {

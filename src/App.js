@@ -1,29 +1,31 @@
-import Login from './components/enter/Login';
-import Registration from './components/enter/Registration';
-import MainPage from './components/mainPage/MainPage'
-import { Switch, Route, Redirect } from 'react-router-dom';
+
+import useAuth from './auth.check';
+import useRoutes from './Routes';
+import {AuthContext} from './context/AuthContext';
 
 import './Style/header.css'
 import './Style/enter-style/mainEnter.css'
 import './Style/enter-style/mainEnter-media.css'
 import './Style/main-style/filling.css'
 
+
 function App() {
+  const {token, userId, loginCheck, logout} = useAuth();
+  const isAuthenticated = !!token;
+  const routes = useRoutes(isAuthenticated);
   return (
+    <AuthContext.Provider value={{
+      token, 
+      userId, 
+      loginCheck, 
+      logout
+    }}>
+
     <div className="App">
-      <Switch>
-        <Route path='/authorization'>
-          <Login />
-        </Route>
-        <Route path='/registration'>
-          <Registration />
-        </Route>
-        <Route path='/mainPage'>
-          <MainPage />
-        </Route>
-        <Redirect from='/' to='/authorization' />
-      </Switch>
+      {routes}
     </div>
+
+    </AuthContext.Provider>
   );
 }
 
