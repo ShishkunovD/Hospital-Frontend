@@ -3,18 +3,20 @@ import Filling from "./Filling";
 import Reseptions from "./Reseptions";
 
 const MainPage = () => {
+  const obj = {
+    logoStr: 'Приемы',
+    logoStrN: 'Receptions'
+  }
 
-    const logoStr = 'Приемы';
-
-    return(
-        <div className="main-page">
-          <Header logoStr={logoStr} />
-          <div className="main-container">
-            <Filling />
-            <Reseptions />
-          </div>
-        </div>
-    )
+  return (
+    <div className="main-page">
+      <Header obj={obj} />
+      <div className="main-container">
+        <Filling />
+      </div>
+      <Reseptions />
+    </div>
+  )
 }
 
 export default MainPage;

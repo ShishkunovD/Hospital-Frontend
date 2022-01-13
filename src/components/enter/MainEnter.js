@@ -1,11 +1,16 @@
-import MainImg from '../../Images/Main.png'
 import Form from './Form';
+import MainImg from '../../Images/Main.png';
 
-const MainEnter = ({titleStr, enterStr, enterJump}) => {
-  return(
+
+const MainEnter = ({obj}) => {
+  return (
     <div className='main-enter'>
-      <img src={MainImg} alt='mainLogo' className='photo-enter'/>
-      <Form titleStr={titleStr} enterStr={enterStr} enterJump={enterJump} />
+      <img 
+        src={MainImg} 
+        alt='mainLogo' 
+        className='photo-enter'
+      />
+      <Form obj={obj}/>
     </div>
   )
 }

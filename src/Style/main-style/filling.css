@@ -1,21 +1,23 @@
 .main-page {
   background-color: #C5E9FF;
-  box-shadow: 0 5px 5px 10px rgba(0, 0, 0, .35);
   margin-bottom: 10px;
 }
 
 .main-container {
-  width: 95%;
+  width: 100%;
   height: 122px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  box-shadow: 0 5px 5px 10px rgba(0, 0, 0, .35);
 }
 
 .filling {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 95%;
+  margin: auto 0;
 }
 
 .name-patient {
@@ -34,17 +36,17 @@
   flex-direction: column;
 }
 
-.doctor__select {
-    width: 188px;
-    height: 50px;
-  }
+.doctor-select {
+  width: 188px;
+  height: 50px;
+}
 
 .data {
   display: flex;
   flex-direction: column;
 }
 
-.data__input {
+.data-input {
   width: 188px;
   height: 45px;
 }
@@ -54,7 +56,7 @@
   flex-direction: column;
 }
 
-.complaints__input {
+.complaints-input {
   width: 188px;
   height: 45px;
 }

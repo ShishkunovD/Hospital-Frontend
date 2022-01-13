@@ -3,17 +3,23 @@ import MainEnter from "./MainEnter";
 
 const Registration = () => {
 
-  const logoStr = 'Зарегистрироваться в системе'
-  const titleStr = 'Регистрация'
-  const enterStr = 'Зарегистрироваться'
-  const enterJump = 'Авторизоваться'
+  const obj = {
+    logoStr: 'Зарегестрироваться в системе',
+    logoStrN: 'Registration in system',
+    titleStr: 'Регистрация',
+    titleStrN: 'Registration',
+    enterStr: 'Зарегистрироваться',
+    enterStrN: 'Registr',
+    enterJump: 'Авторизоваться',
+    enterJumpN: 'Login'
+  }
 
-  return(
+  return (
     <div>
-      <Header logoStr={logoStr}/>
-      <MainEnter titleStr={titleStr} enterStr={enterStr} enterJump={enterJump}/>
+      <Header obj={obj}/>
+      <MainEnter obj={obj}/>
     </div>
-  )
+  );
 }
 
 export default Registration;

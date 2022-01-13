@@ -5,23 +5,20 @@
     height: 100vh;
   }
 
-  .photo-enter {
+  .photo-enter, .form {
     margin-top: 30px;
   }
 
-  .form {
-    margin-top: 30px;
-  }
 }
 
 @media screen and (max-width: 560px) {
-  .logoStr {
+  .logo-str{
       font-size: 26px;
   }
 }
 
 @media screen and (max-width: 470px) {
-  .logoStr {
+  .logo-str {
     font-size: 16px;
   }
 } 
@@ -37,7 +34,7 @@
 }
 
 @media screen and (max-width: 380px) {
-  .logoStr {
+  .logo-str{
     margin-left: 40px;
   }
 }
@@ -47,7 +44,7 @@
     margin-left: 7px;
   }
 
-  .logoStr {
+  .logo-str {
       margin-left: 20px;
   }
 } 

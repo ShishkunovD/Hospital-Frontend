@@ -1,12 +1,12 @@
-import { Switch, Route, Redirect } from "react-router-dom"
+import { Switch, Route, Redirect } from 'react-router-dom';
 import MainPage from './components/mainPage/MainPage';
 import Login from './components/enter/Login';
 import Registration from './components/enter/Registration';
 
 const useRoutes = (isAuthenticated) => {
-  if(isAuthenticated) {
-    return(
-        <Switch>
+  if (isAuthenticated) {
+    return (
+      <Switch>
         <Route path='/mainPage'>
           <MainPage />
         </Route>
@@ -15,7 +15,7 @@ const useRoutes = (isAuthenticated) => {
     )
   }
 
-  return(
+  return (
     <Switch>
       <Route path='/authorization'>
         <Login />

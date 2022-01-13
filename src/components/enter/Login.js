@@ -1,19 +1,24 @@
-import Header from "../Header"
+import Header from "../Header";
 import MainEnter from "./MainEnter";
 
 const Login = () => {
+  const obj = {
+    logoStr: 'Войти в систему',
+    logoStrN : 'Enter in system',
+    titleStr: 'Войти в систему',
+    titleStrN: 'Enter in system',
+    enterStr: 'Войти',
+    enterStrN: 'Enter',
+    enterJump: 'Зарегистрироваться',
+    enterJumpN: 'Register'
+  }
 
-  const logoStr = 'Войти в систему'
-  const titleStr = 'Войти в систему';
-  const enterStr = 'Войти';
-  const enterJump = 'Зарегистрироваться'
-
-  return(
+  return (
     <>
-      <Header logoStr={logoStr}/>
-      <MainEnter titleStr={titleStr} enterStr={enterStr} enterJump={enterJump}/>
+      <Header obj={obj}/>
+      <MainEnter obj={obj}/>
     </>
-  )
+  );
 }
 
 export default Login;
