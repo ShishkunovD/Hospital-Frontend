@@ -11,7 +11,7 @@ const Header = ({ obj }) => {
     auth.logout();
   }
 
-  const {logoStr, logoStrN} = obj;
+  const { logoStr, logoStrN } = obj;
 
   return (
     <div className='header'>

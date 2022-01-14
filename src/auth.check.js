@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const storageName = 'userData';
 
@@ -27,7 +27,7 @@ const useAuth = () => {
     }
   }, [loginCheck]);
 
-  return { loginCheck, logout, isAuth };  // Здесь, вместо token передаем переменную isAuth
+  return { loginCheck, logout, isAuth };
 }
 
 export default useAuth;

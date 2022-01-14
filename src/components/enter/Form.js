@@ -35,20 +35,6 @@ const Form = ({obj}) => {
   const [isSnackOpen, setIsSnackOpen] = useState(false);
   const [isSnackLP, setSnackLP] = useState(false);
 
-  //Check inputs
-  // const [inputLogin, setInputLogin] = useState(errorLogin);
-  // const [inputPassword, setInputPassword] = useState(errorPassword);
-  // const [passwordRepeat, setPasswordRepeat] = useState(errorRepeatPassword);
-
-  // const [loginDirty, setLoginDirty] = useState(false);
-  // const [passwordDirty, setPasswordDirty] = useState(false);
-  // const [passwordRepeatDirty, setPasswordRepeatDirty] = useState(false);
-
-  //inputs
-  // const [login, setLogin] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [passwordRepeatS, setPasswordRepeatS] = useState('');
-
   const [loginInputs, setLoginInputs] = useState({
     inputLogin: errorLogin,
     loginDirty: false,
@@ -69,10 +55,11 @@ const Form = ({obj}) => {
 
   const onChangeInputLogin = (e) => {
     const valueInput = e.target.value;
-    setLoginInputs({...loginInputs.login = valueInput});
-    valueInput.trim().length > 5 ?
-    setLoginInputs({...loginInputs, inputLogin: correctLogin}) : 
-    setLoginInputs({...loginInputs, inputLogin: errorLogin});
+    setLoginInputs({
+      ...loginInputs, 
+      login: valueInput, 
+      inputLogin: valueInput.trim().length > 5 ? correctLogin : errorLogin
+    }); 
   }
 
   const onBlurHandler = (e) => {
@@ -91,9 +78,10 @@ const Form = ({obj}) => {
 
   const onChangeInputPassword = (e) => {
   const valuePassword = e.target.value;
-  setPasswordInputs({...passwordInputs.password = valuePassword});
   const reg = (/^[A-Za-z0-9]+$/).test(valuePassword);
   const resultNumber = (/(?=.*\d)/).test(valuePassword);
+  setPasswordInputs({...passwordInputs, password : valuePassword});
+  console.log({...passwordInputs});
   (reg && resultNumber && valuePassword.length > 5) ?
   setPasswordInputs({...passwordInputs, inputPassword: correctPassword}) :
   setPasswordInputs({...passwordInputs, inputPassword: errorPassword});
@@ -104,7 +92,7 @@ const onChangePasswordRepeat = (e) => {
   const valuePasswordRepeat = e.target.value;
   passwordRepeatInputs(valuePasswordRepeat);
   checkPasswords(passwordInputs.password, valuePasswordRepeat);
-  if(!valuePasswordRepeat.length) {
+  if (!valuePasswordRepeat.length) {
     passwordRepeatInputs({...passwordRepeatInputs, passwordRepeat: errorRepeatPassword});
   }
 }
@@ -156,17 +144,16 @@ const register = async () => {
     if (resp.status !== 200) {
       setSnackLP(true);
     } else {
-      setLoginInputs({...loginInputs, login: ''});
-      setPasswordInputs({...passwordInputs, password: ''});
-      setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeatS: ''});
-      setLoginInputs({...loginInputs, inputLogin: ''})
-      setPasswordInputs({...passwordInputs, inputPassword: ''});
-      setPasswordRepeatInputs({ ...passwordRepeatInputs, passwordRepeat: ''});
+      setLoginInputs({...loginInputs, login: '', inputLogin: '', });
+      setPasswordInputs({...passwordInputs, password: '', inputPassword: ''});
+      setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeatS: '', passwordRepeat: ''});
     }
   } else {
     setIsSnackOpen(true);
   }
 }
+
+console.log(loginInputs);
 
   return(
     <div className='form'>
@@ -180,17 +167,15 @@ const register = async () => {
             className='login' 
             name='login' 
             placeholder='Login' 
-            onBlur={(e) => {onBlurHandler(e)}} 
-            onKeyUp={(e) => {onChangeInputLogin(e)}} 
+            onBlur={(e) => onBlurHandler(e)} 
+            onKeyUp={(e) => onChangeInputLogin(e)} 
           />
           {(loginInputs.loginDirty && loginInputs.inputLogin) && 
-          <span 
-            className = {loginInputs.inputLogin === errorLogin ? 
-            'red' : 
-            'green'}
-          >
-            {loginInputs.inputLogin}
-          </span>
+            <span 
+              className = {loginInputs.inputLogin === errorLogin ? 'red' : 'green'}
+            >
+              {loginInputs.inputLogin}
+            </span>
           }
         </div>
 
@@ -202,23 +187,18 @@ const register = async () => {
             name='password' 
             placeholder='Password' 
             onBlur={(e) => {onBlurHandler(e)}} 
-            onKeyUp={(e) => {onChangeInputPassword(e)}}  
+            onKeyUp={(e) => onChangeInputPassword(e)}  
           />
           {(passwordInputs.passwordDirty && passwordInputs.inputPassword) && 
-          <span 
-            className = {passwordInputs.inputPassword === errorPassword ? 
-            'red' :
-            'green'}
-          >
+            <span 
+              className = {passwordInputs.inputPassword === errorPassword ? 'red' : 'green'}
+            >
             {passwordInputs.inputPassword}
-          </span>
+            </span>
           }
         </div>
 
-        <div className={titleStrN === 'Registration' ? 
-        "repeat-password-block" :
-         "hide"}
-        >
+        <div className={titleStrN === 'Registration' ? "repeat-password-block" :"hide"}>
           <span>Repeat password:</span>
           <input 
             defaultValue={passwordRepeatInputs.passwordRepeatS} 
