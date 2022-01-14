@@ -2,7 +2,6 @@ import Header from "../Header";
 import MainEnter from "./MainEnter";
 
 const Registration = () => {
-
   const obj = {
     logoStr: 'Зарегестрироваться в системе',
     logoStrN: 'Registration in system',
@@ -12,12 +11,12 @@ const Registration = () => {
     enterStrN: 'Registr',
     enterJump: 'Авторизоваться',
     enterJumpN: 'Login'
-  }
+  };
 
   return (
     <div>
-      <Header obj={obj}/>
-      <MainEnter obj={obj}/>
+      <Header obj={ obj }/>
+      <MainEnter obj={ obj }/>
     </div>
   );
 }

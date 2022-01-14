@@ -1,5 +1,3 @@
-import Option from "./Option";
-
 const Filling = () => {
   const doctors = ['Аганесов Александр Георгиевич', 'Белов Юрий Владимирович', 'Давыдов Михаил Иванович'];
 
@@ -15,11 +13,8 @@ const Filling = () => {
       <div className="doctor">
         <span>Врач:</span>
         <select className="doctor-select">
-          <option selected disabled></option>
-          {doctors.map((item, index) => <Option 
-            key={index} 
-            item={item}
-          />
+          {doctors.map(item =>
+            <option>{item}</option>
           )}
         </select>
       </div>

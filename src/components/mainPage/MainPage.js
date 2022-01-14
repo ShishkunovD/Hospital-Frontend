@@ -6,11 +6,11 @@ const MainPage = () => {
   const obj = {
     logoStr: 'Приемы',
     logoStrN: 'Receptions'
-  }
-
+  };
+  
   return (
     <div className="main-page">
-      <Header obj={obj} />
+      <Header obj={ obj } />
       <div className="main-container">
         <Filling />
       </div>

@@ -1,14 +1,15 @@
 const Reseptions = () => {
+
+  const headerTable = ['Имя', 'Врач', 'Дата', 'Жалобы'];
+
   return(
     <div className='table-container'>
       <table className='table'>
         <thead >
           <tr className='table-header'>
-            <td>Имя</td>
-            <td>Врач</td>
-            <td>Дата</td>
-            <td>Жалобы</td>
-            <td></td>
+            {headerTable.map(item => {
+              <td>{item}</td>
+            })}
           </tr>
         </thead>
         <tbody>

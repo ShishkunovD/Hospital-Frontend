@@ -2,8 +2,6 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import Snack from "../../snackbar/Snackbar";
-import SnackBarLP from "../../snackbar/SnackBarLP";
-
 
 const Form = ({obj}) => {
   const auth = useContext(AuthContext);
@@ -15,7 +13,7 @@ const Form = ({obj}) => {
     errorPassword: `Password isn't correctly`,
     correctRepeatPassword: 'Correctly',
     errorRepeatPassword: 'Incorrectly'
-  }
+  };
 
   const {
     titleStr,
@@ -31,85 +29,92 @@ const Form = ({obj}) => {
     errorPassword,
     correctRepeatPassword,
     errorRepeatPassword
-  } 
-  = objMessage;
+  } = objMessage;
 
   // Working with SnackBar
   const [isSnackOpen, setIsSnackOpen] = useState(false);
   const [isSnackLP, setSnackLP] = useState(false);
 
   //Check inputs
-  const [inputLogin, setInputLogin] = useState(errorLogin);
-  const [inputPassword, setInputPassword] = useState(errorPassword);
-  const [passwordRepeat, setPasswordRepeat] = useState(errorRepeatPassword);
+  // const [inputLogin, setInputLogin] = useState(errorLogin);
+  // const [inputPassword, setInputPassword] = useState(errorPassword);
+  // const [passwordRepeat, setPasswordRepeat] = useState(errorRepeatPassword);
 
-  const [loginDirty, setLoginDirty] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false);
-  const [passwordRepeatDirty, setPasswordRepeatDirty] = useState(false);
+  // const [loginDirty, setLoginDirty] = useState(false);
+  // const [passwordDirty, setPasswordDirty] = useState(false);
+  // const [passwordRepeatDirty, setPasswordRepeatDirty] = useState(false);
 
   //inputs
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordRepeatS, setPasswordRepeatS] = useState('');
+  // const [login, setLogin] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [passwordRepeatS, setPasswordRepeatS] = useState('');
+
+  const [loginInputs, setLoginInputs] = useState({
+    inputLogin: errorLogin,
+    loginDirty: false,
+    login: ''
+  });
+
+  const [passwordInputs, setPasswordInputs] = useState({
+    inputPassword: errorPassword,
+    passwordDirty: false,
+    password: ''
+  });
+
+  const [passwordRepeatInputs, setPasswordRepeatInputs] = useState({
+    passwordRepeat: errorRepeatPassword,
+    passwordRepeatDirty: false,
+    passwordRepeatS: ''
+  })
 
   const onChangeInputLogin = (e) => {
-    setLogin(e.target.value);
-    if(e.target.value.trim().length > 5) {
-      setInputLogin(correctLogin);
-    } else {
-      setInputLogin(errorLogin);
-    }
+    const valueInput = e.target.value;
+    setLoginInputs({...loginInputs.login = valueInput});
+    valueInput.trim().length > 5 ?
+    setLoginInputs({...loginInputs, inputLogin: correctLogin}) : 
+    setLoginInputs({...loginInputs, inputLogin: errorLogin});
   }
 
   const onBlurHandler = (e) => {
     switch (e.target.name) {
       case 'login':
-        setLoginDirty(true);
+        setLoginInputs({...loginInputs, loginDirty: true});
         break;
       case 'password': 
-        setPasswordDirty(true);
+        setPasswordInputs({...passwordInputs, passwordDirty: true});
         break;
       case 'passwordRepeat':
-        setPasswordRepeatDirty(true);
+        setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeatDirty: true});
         break;
     }
   }
 
   const onChangeInputPassword = (e) => {
-  setPassword(e.target.value);
-  let reg = (/^[A-Za-z0-9]+$/).test(e.target.value);
-  let array = e.target.value.trim().split('');
-  let arrayNumber = array.map(item => {
-    return +item;
-  });
-  
-  let resultNumber = arrayNumber.some(item => {
-    if (+item || +item === 0) {
-      return true;
-    }
-  })
-  if (reg && resultNumber && e.target.value.length > 5)  {
-    setInputPassword(correctPassword);
-  } else {
-    setInputPassword(errorPassword);
-  }
-  checkPasswords(e.target.value, passwordRepeatS);
+  const valuePassword = e.target.value;
+  setPasswordInputs({...passwordInputs.password = valuePassword});
+  const reg = (/^[A-Za-z0-9]+$/).test(valuePassword);
+  const resultNumber = (/(?=.*\d)/).test(valuePassword);
+  (reg && resultNumber && valuePassword.length > 5) ?
+  setPasswordInputs({...passwordInputs, inputPassword: correctPassword}) :
+  setPasswordInputs({...passwordInputs, inputPassword: errorPassword});
+  checkPasswords(valuePassword, passwordRepeatInputs.passwordRepeatS);
 }
 
 const onChangePasswordRepeat = (e) => {
-  setPasswordRepeatS(e.target.value);
-  checkPasswords(password, e.target.value);
-  if(e.target.value.length === 0) {
-    setPasswordRepeat(errorRepeatPassword);
+  const valuePasswordRepeat = e.target.value;
+  passwordRepeatInputs(valuePasswordRepeat);
+  checkPasswords(passwordInputs.password, valuePasswordRepeat);
+  if(!valuePasswordRepeat.length) {
+    passwordRepeatInputs({...passwordRepeatInputs, passwordRepeat: errorRepeatPassword});
   }
 }
 
 const checkPasswords = (pass, repeat) => {
-  setPasswordRepeat(pass === repeat ? correctRepeatPassword : errorRepeatPassword);
+  setPasswordRepeatInputs(pass === repeat ? correctRepeatPassword : errorRepeatPassword);
 }
 
 const signIn = async () => {
-  if(inputLogin === correctLogin && inputPassword === correctPassword) {
+  if (loginInputs.inputLogin === correctLogin && passwordInputs.inputPassword === correctPassword) {
      const resp = await fetch ('http://localhost:8000/api/auth/login', {
       method: 'POST',
       headers: {
@@ -117,12 +122,12 @@ const signIn = async () => {
         'Access-Control-Allow-Origin' : '*'
       },
       body: JSON.stringify({
-        "login": login.trim(),
-        "password": password.trim()
+        "login": loginInputs.login.trim(),
+        "password": passwordInputs.password.trim()
       })
     });
     
-      if(resp.status !== 200) {
+      if (resp.status !== 200) {
         setSnackLP(true);
       } else {
         const result = await resp.json();
@@ -134,9 +139,9 @@ const signIn = async () => {
 }
 
 const register = async () => {
-  if(inputLogin === correctLogin && 
-    inputPassword === correctPassword && 
-    passwordRepeat === correctRepeatPassword) {
+  if (loginInputs.inputLogin === correctLogin && 
+    passwordInputs.inputPassword === correctPassword && 
+    passwordRepeatInputs.passwordRepeat === correctRepeatPassword) {
     const resp = await fetch ('http://localhost:8000/api/auth/registrationsend', {
       method: 'POST',
       headers: {
@@ -144,19 +149,19 @@ const register = async () => {
         'Access-Control-Allow-Origin' : '*'
       },
       body: JSON.stringify({
-        "login": login.trim(),
-        "password": password.trim()
+        "login": loginInputs.login.trim(),
+        "password": passwordInputs.password.trim()
       })
     });
-    if(resp.status !== 200) {
+    if (resp.status !== 200) {
       setSnackLP(true);
     } else {
-      setLogin('');
-      setPassword('');
-      setPasswordRepeatS('');
-      setInputLogin('');
-      setInputPassword('');
-      setPasswordRepeat('');
+      setLoginInputs({...loginInputs, login: ''});
+      setPasswordInputs({...passwordInputs, password: ''});
+      setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeatS: ''});
+      setLoginInputs({...loginInputs, inputLogin: ''})
+      setPasswordInputs({...passwordInputs, inputPassword: ''});
+      setPasswordRepeatInputs({ ...passwordRepeatInputs, passwordRepeat: ''});
     }
   } else {
     setIsSnackOpen(true);
@@ -171,17 +176,20 @@ const register = async () => {
         <div className="login-block">
           <span>Login:</span>
           <input 
-            defaultValue={login} 
+            defaultValue={loginInputs.login} 
             className='login' 
             name='login' 
             placeholder='Login' 
             onBlur={(e) => {onBlurHandler(e)}} 
             onKeyUp={(e) => {onChangeInputLogin(e)}} 
           />
-          {(loginDirty && inputLogin) && 
+          {(loginInputs.loginDirty && loginInputs.inputLogin) && 
           <span 
-            className = {inputLogin === errorLogin ? 'red' : 'green'}>
-            {inputLogin}
+            className = {loginInputs.inputLogin === errorLogin ? 
+            'red' : 
+            'green'}
+          >
+            {loginInputs.inputLogin}
           </span>
           }
         </div>
@@ -189,35 +197,44 @@ const register = async () => {
         <div className="password-block">
           <span>Password:</span>
           <input 
-            defaultValue={password} 
+            defaultValue={passwordInputs.password} 
             className='password' 
             name='password' 
             placeholder='Password' 
             onBlur={(e) => {onBlurHandler(e)}} 
             onKeyUp={(e) => {onChangeInputPassword(e)}}  
           />
-          {(passwordDirty && inputPassword) && 
+          {(passwordInputs.passwordDirty && passwordInputs.inputPassword) && 
           <span 
-            className = {inputPassword === errorPassword ? 'red' : 'green'}>
-            {inputPassword}
+            className = {passwordInputs.inputPassword === errorPassword ? 
+            'red' :
+            'green'}
+          >
+            {passwordInputs.inputPassword}
           </span>
           }
         </div>
 
-        <div className={titleStrN === 'Registration' ? "repeat-password-block" : "hide"}>
+        <div className={titleStrN === 'Registration' ? 
+        "repeat-password-block" :
+         "hide"}
+        >
           <span>Repeat password:</span>
           <input 
-            defaultValue={passwordRepeatS} 
+            defaultValue={passwordRepeatInputs.passwordRepeatS} 
             className='password' 
             name='passwordRepeat' 
             placeholder='Password' 
             onBlur={(e) => {onBlurHandler(e)}} 
             onKeyUp = {(e) => {onChangePasswordRepeat(e)}}
           />
-          {(passwordRepeatDirty && passwordRepeat) && 
+          {(passwordRepeatInputs.passwordRepeatDirty && passwordRepeatInputs.passwordRepeat) && 
           <span 
-            className = {passwordRepeat === errorRepeatPassword ? 'red' : 'green'}>
-            {passwordRepeat}
+            className = {passwordRepeatInputs.passwordRepeat === errorRepeatPassword ? 
+            'red' : 
+            'green'}
+          >
+            {passwordRepeatInputs.passwordRepeat}
           </span>}
         </div>
 
@@ -234,7 +251,7 @@ const register = async () => {
           {enterStr}
         </button>}
 
-        {obj.titleStrN === 'Enter in system' ? 
+        {titleStrN === 'Enter in system' ? 
         <Link 
           className='link' 
           to='/registration'>
@@ -253,11 +270,9 @@ const register = async () => {
         </Link>}
       </div>
       <Snack 
-        isOpen={isSnackOpen} 
+        isOpen={isSnackOpen}
+        isOpenLP={isSnackLP}
         onSetIsSnackOpen={setIsSnackOpen}
-      />
-      <SnackBarLP 
-        isOpen={isSnackLP}
         setSnackLP={setSnackLP}
       />
     </div>

@@ -11,12 +11,12 @@ const Login = () => {
     enterStrN: 'Enter',
     enterJump: 'Зарегистрироваться',
     enterJumpN: 'Register'
-  }
+  };
 
   return (
     <>
-      <Header obj={obj}/>
-      <MainEnter obj={obj}/>
+      <Header obj={ obj }/>
+      <MainEnter obj={ obj }/>
     </>
   );
 }

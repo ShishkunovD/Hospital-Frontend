@@ -1,21 +1,21 @@
-import { useState, useCallback, useEffect } from "react";
+import {useCallback, useEffect, useState} from "react";
 
 const storageName = 'userData';
 
 const useAuth = () => {
-  const [token, setToken] = useState(null);
+  const [isAuth, setIsAuth] = useState(null);
 
-  const loginCheck = useCallback((jwtToken, id) => {
-    setToken(jwtToken);
+  const loginCheck = useCallback(jwtToken => {
+    setIsAuth(jwtToken);
 
     localStorage.setItem(storageName, JSON.stringify({
         token: jwtToken
     }));
   }, []);
 
-
   const logout = useCallback(() => {
-    setToken(null);
+
+    setIsAuth(null);
     localStorage.removeItem(storageName);
   }, []);
 
@@ -27,7 +27,7 @@ const useAuth = () => {
     }
   }, [loginCheck]);
 
-  return { loginCheck, logout, token };
+  return { loginCheck, logout, isAuth };  // Здесь, вместо token передаем переменную isAuth
 }
 
 export default useAuth;

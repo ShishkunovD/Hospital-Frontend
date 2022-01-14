@@ -4,6 +4,7 @@ import Login from './components/enter/Login';
 import Registration from './components/enter/Registration';
 
 const useRoutes = (isAuthenticated) => {
+
   if (isAuthenticated) {
     return (
       <Switch>

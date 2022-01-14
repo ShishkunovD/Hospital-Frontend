@@ -12,8 +12,8 @@
 }
 
 @media screen and (max-width: 560px) {
-  .logo-str{
-      font-size: 26px;
+  .logo-str {
+    font-size: 26px;
   }
 }
 
@@ -34,7 +34,7 @@
 }
 
 @media screen and (max-width: 380px) {
-  .logo-str{
+  .logo-str {
     margin-left: 40px;
   }
 }

@@ -1,3 +1,4 @@
+import '../Style/header.css'
 import logo from '../Images/Vector.png';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
@@ -10,6 +11,8 @@ const Header = ({ obj }) => {
     auth.logout();
   }
 
+  const {logoStr, logoStrN} = obj;
+
   return (
     <div className='header'>
       <div className='text-logo'>
@@ -18,13 +21,14 @@ const Header = ({ obj }) => {
           alt='logo' 
           className='logo'
         />
-        <div className='logo-str'>{obj.logoStr}</div>
+        <div className='logo-str'>{logoStr}</div>
       </div>
-      <button className={obj.logoStrN === 'Receptions' ? 'button-exit' : 'hide'} >
+      <button className={logoStrN === 'Receptions' ? 'button-exit' : 'hide'} >
         <Link 
           to='/authorization' 
           onClick={() => {logoutHandler()}}
-        >Выход
+        >
+          Выход
         </Link>
       </button>
     </div>
