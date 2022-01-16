@@ -6,6 +6,8 @@ import Snack from "../../snackbar/Snackbar";
 const Form = ({obj}) => {
   const auth = useContext(AuthContext);
 
+  let textSnackbar = '';
+
   const objMessage = {
     correctLogin: 'Login is correctly',
     errorLogin: 'Login must contain at least 6 characters',
@@ -33,7 +35,6 @@ const Form = ({obj}) => {
 
   // Working with SnackBar
   const [isSnackOpen, setIsSnackOpen] = useState(false);
-  const [isSnackLP, setSnackLP] = useState(false);
 
   const [loginInputs, setLoginInputs] = useState({
     inputLogin: errorLogin,
@@ -59,7 +60,7 @@ const Form = ({obj}) => {
       ...loginInputs, 
       login: valueInput, 
       inputLogin: valueInput.trim().length > 5 ? correctLogin : errorLogin
-    }); 
+    });
   }
 
   const onBlurHandler = (e) => {
@@ -80,25 +81,27 @@ const Form = ({obj}) => {
   const valuePassword = e.target.value;
   const reg = (/^[A-Za-z0-9]+$/).test(valuePassword);
   const resultNumber = (/(?=.*\d)/).test(valuePassword);
-  setPasswordInputs({...passwordInputs, password : valuePassword});
+  setPasswordInputs({...passwordInputs, password : valuePassword });
   console.log({...passwordInputs});
-  (reg && resultNumber && valuePassword.length > 5) ?
-  setPasswordInputs({...passwordInputs, inputPassword: correctPassword}) :
-  setPasswordInputs({...passwordInputs, inputPassword: errorPassword});
+  setPasswordInputs((reg && resultNumber && valuePassword.length > 5) ? 
+  {...passwordInputs, password: valuePassword, inputPassword: correctPassword} : 
+  {...passwordInputs, password: valuePassword, inputPassword: errorPassword});
+
   checkPasswords(valuePassword, passwordRepeatInputs.passwordRepeatS);
 }
 
 const onChangePasswordRepeat = (e) => {
   const valuePasswordRepeat = e.target.value;
-  passwordRepeatInputs(valuePasswordRepeat);
-  checkPasswords(passwordInputs.password, valuePasswordRepeat);
-  if (!valuePasswordRepeat.length) {
-    passwordRepeatInputs({...passwordRepeatInputs, passwordRepeat: errorRepeatPassword});
-  }
+  setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeatS: valuePasswordRepeat});
+  checkPasswords(valuePasswordRepeat, passwordInputs.password); 
 }
 
 const checkPasswords = (pass, repeat) => {
-  setPasswordRepeatInputs(pass === repeat ? correctRepeatPassword : errorRepeatPassword);
+  if(pass === repeat) {
+    setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeat: correctRepeatPassword});
+  } else {
+    setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeat: errorRepeatPassword});
+  }
 }
 
 const signIn = async () => {
@@ -116,12 +119,14 @@ const signIn = async () => {
     });
     
       if (resp.status !== 200) {
-        setSnackLP(true);
+        textSnackbar = 'Wrong login or password';
+        setIsSnackOpen(true);
       } else {
         const result = await resp.json();
         auth.loginCheck(result.token);
       }
   } else {
+    textSnackbar = 'The entered data is not correct';
     setIsSnackOpen(true);
   }
 }
@@ -142,18 +147,18 @@ const register = async () => {
       })
     });
     if (resp.status !== 200) {
-      setSnackLP(true);
+      textSnackbar = 'Wrong login or password';
+      setIsSnackOpen(true);
     } else {
       setLoginInputs({...loginInputs, login: '', inputLogin: '', });
       setPasswordInputs({...passwordInputs, password: '', inputPassword: ''});
       setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeatS: '', passwordRepeat: ''});
     }
   } else {
+    textSnackbar = 'The entered data is not correct';
     setIsSnackOpen(true);
   }
 }
-
-console.log(loginInputs);
 
   return(
     <div className='form'>
@@ -186,7 +191,7 @@ console.log(loginInputs);
             className='password' 
             name='password' 
             placeholder='Password' 
-            onBlur={(e) => {onBlurHandler(e)}} 
+            onBlur={(e) => onBlurHandler(e)} 
             onKeyUp={(e) => onChangeInputPassword(e)}  
           />
           {(passwordInputs.passwordDirty && passwordInputs.inputPassword) && 
@@ -198,21 +203,19 @@ console.log(loginInputs);
           }
         </div>
 
-        <div className={titleStrN === 'Registration' ? "repeat-password-block" :"hide"}>
+        <div className={titleStrN === 'Registration' ? "repeat-password-block" : "hide"}>
           <span>Repeat password:</span>
           <input 
             defaultValue={passwordRepeatInputs.passwordRepeatS} 
             className='password' 
             name='passwordRepeat' 
             placeholder='Password' 
-            onBlur={(e) => {onBlurHandler(e)}} 
-            onKeyUp = {(e) => {onChangePasswordRepeat(e)}}
+            onBlur={(e) => onBlurHandler(e)} 
+            onKeyUp = {(e) => onChangePasswordRepeat(e)}
           />
           {(passwordRepeatInputs.passwordRepeatDirty && passwordRepeatInputs.passwordRepeat) && 
           <span 
-            className = {passwordRepeatInputs.passwordRepeat === errorRepeatPassword ? 
-            'red' : 
-            'green'}
+            className = {passwordRepeatInputs.passwordRepeat === errorRepeatPassword ? 'red' : 'green'}
           >
             {passwordRepeatInputs.passwordRepeat}
           </span>}
@@ -251,9 +254,10 @@ console.log(loginInputs);
       </div>
       <Snack 
         isOpen={isSnackOpen}
-        isOpenLP={isSnackLP}
+        // isOpenLP={isSnackLP}
         onSetIsSnackOpen={setIsSnackOpen}
-        setSnackLP={setSnackLP}
+        textSnackbar={textSnackbar}
+        // setSnackLP={setSnackLP}
       />
     </div>
   )
