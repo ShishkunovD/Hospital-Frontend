@@ -1,5 +1,5 @@
-import useAuth from './auth.check';
 import useRoutes from './Routes';
+import useAuth from './auth.check';
 import { AuthContext } from './context/AuthContext';
 
 import './Style/main-style/filling.css';

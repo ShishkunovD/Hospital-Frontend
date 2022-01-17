@@ -1,6 +1,6 @@
 import {Alert, Snackbar } from '@mui/material';
 
-const Snack = ({ isOpen, onSetIsSnackOpen, textSnackbar }) => {
+const Snack = ({ isOpen, onSetIsSnackOpen, messageSnack }) => {
 
   const handleClose = () => {
     onSetIsSnackOpen(false);
@@ -12,7 +12,7 @@ const Snack = ({ isOpen, onSetIsSnackOpen, textSnackbar }) => {
       onClose={handleClose}
       autoHideDuration={3000}
     >
-      <Alert severity="error">{textSnackbar}</Alert>
+      <Alert severity="error">{messageSnack}</Alert>
     </Snackbar>
   )
 }

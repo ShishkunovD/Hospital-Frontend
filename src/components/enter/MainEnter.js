@@ -1,6 +1,6 @@
+import Form from './Form';
 import '../../Style/enter-style/mainEnter.css';
 import '../../Style/enter-style/mainEnter-media.css';
-import Form from './Form';
 import MainImg from '../../Images/Main.png';
 
 

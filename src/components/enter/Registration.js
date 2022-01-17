@@ -1,5 +1,5 @@
-import Header from "../Header";
 import MainEnter from "./MainEnter";
+import Header from "../Header";
 
 const Registration = () => {
   const obj = {

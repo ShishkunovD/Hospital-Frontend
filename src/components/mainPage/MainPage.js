@@ -1,6 +1,6 @@
-import Header from "../Header"
 import Filling from "./Filling";
 import Reseptions from "./Reseptions";
+import Header from "../Header"
 
 const MainPage = () => {
   const obj = {
