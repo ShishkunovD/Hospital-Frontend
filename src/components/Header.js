@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Link } from "react-router-dom";
 import { AuthContext } from '../context/AuthContext';
-import '../Style/header.css'
 import logo from '../Images/Vector.png';
+import '../Style/header.css';
 
 
 const Header = ({ obj }) => {

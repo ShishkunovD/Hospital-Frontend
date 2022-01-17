@@ -41,7 +41,7 @@ const Form = ({ obj }) => {
     login: ''
   });
 
-  const {inputLogin, loginDirty, login} = loginInputs;
+  const { inputLogin, loginDirty, login } = loginInputs;
 
   const [passwordInputs, setPasswordInputs] = useState({
     inputPassword: errorPassword,
@@ -49,7 +49,7 @@ const Form = ({ obj }) => {
     password: ''
   });
 
-  const {inputPassword, passwordDirty, password} = passwordInputs;
+  const { inputPassword, passwordDirty, password } = passwordInputs;
 
   const [passwordRepeatInputs, setPasswordRepeatInputs] = useState({
     passwordRepeat: errorRepeatPassword,
@@ -57,7 +57,7 @@ const Form = ({ obj }) => {
     passwordRepeatS: ''
   });
 
-  const {passwordRepeat, passwordRepeatDirty, passwordRepeatS} = passwordRepeatInputs;
+  const { passwordRepeat, passwordRepeatDirty, passwordRepeatS } = passwordRepeatInputs;
 
   const onChangeInputLogin = (e) => {
     const valueInput = e.target.value;
@@ -86,10 +86,8 @@ const Form = ({ obj }) => {
   const valuePassword = e.target.value;
   const reg = (/^[A-Za-z0-9]+$/).test(valuePassword);
   const resultNumber = (/(?=.*\d)/).test(valuePassword);
-  setPasswordInputs({...passwordInputs, password : valuePassword });
-  setPasswordInputs((reg && resultNumber && valuePassword.length > 5) ?
-  {...passwordInputs, password: valuePassword, inputPassword: correctPassword} :
-  {...passwordInputs, password: valuePassword, inputPassword: errorPassword});
+  const test = (reg && resultNumber && valuePassword.length > 5) ? correctPassword : errorPassword;
+  setPasswordInputs({...passwordInputs, password : valuePassword, inputPassword: test });
   checkPasswords(passwordRepeatS, valuePassword);
 }
 
@@ -100,9 +98,9 @@ const onChangePasswordRepeat = (e) => {
 }
 
 const checkPasswords = (pass, repeat) => {
-  pass === repeat ?
-  setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeat: correctRepeatPassword}) :
-  setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeat: errorRepeatPassword});
+  setPasswordRepeatInputs({...passwordRepeatInputs, passwordRepeat: pass === repeat ?
+  correctRepeatPassword :
+  errorRepeatPassword});
 }
 
 const signIn = async () => {
@@ -215,11 +213,11 @@ const register = async () => {
             onKeyUp = {(e) => onChangePasswordRepeat(e)}
           />
           {(passwordRepeatDirty && passwordRepeat) && 
-          <span 
-            className = {passwordRepeat === errorRepeatPassword ? 'red' : 'green'}
-          >
-            {passwordRepeat}
-          </span>}
+            <span 
+              className = {passwordRepeat === errorRepeatPassword ? 'red' : 'green'}
+            >
+              {passwordRepeat}
+            </span>}
         </div>
 
         {titleStrN === 'Enter in system' ? 
