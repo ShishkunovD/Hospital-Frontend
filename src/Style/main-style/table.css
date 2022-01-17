@@ -1,0 +1,23 @@
+.table-container {
+  width: 100%;
+}
+
+.table {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.table-header {
+  width: 100%;
+  background-color: #C4C4C4;
+  height: 60px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+}
+
+tr {
+  display: flex;
+  justify-content: space-between;
+}
