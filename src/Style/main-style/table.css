@@ -1,14 +1,14 @@
 .table-container {
-  width: 100%;
+  margin: 24px auto 0 auto;
 }
 
 .table {
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
 }
 
 .table-header {
-  width: 100%;
+  width: 90%;
   background-color: #C4C4C4;
   height: 60px;
   font-size: 18px;
@@ -17,7 +17,29 @@
   margin-top: 24px;
 }
 
-tr {
+th {
   display: flex;
   justify-content: space-between;
+}
+
+.table-content {
+  border-top: 1px solid black;
+  border: 1px solid #C5E9FF;
+}
+
+.oneCell {
+  border: 1px solid black;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.edlete-edit {
+  display: flex;
+  align-items: center;
+}
+
+.container-delete-edit {
+  display: flex;
+  justify-content: space-evenly;
 }

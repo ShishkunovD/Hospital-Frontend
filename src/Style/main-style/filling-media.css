@@ -1,0 +1,96 @@
+@media screen and (max-width: 1250px) {
+  .filling {
+    display: flex;
+    flex-direction: column;
+    height: 130px;
+  }
+
+  .main-container {
+    height: 190px;
+  }
+
+  .add-btn {
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 965px) {
+  .main-container {
+    height: 200px;
+  }
+
+  .filling {
+    display: flex;
+    flex-direction: row;
+    margin: 20px auto 10px auto;
+  }
+
+  .filling-block-1 {
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+  }
+
+  .filling-block-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 138px;
+  }
+
+  .add-btn {
+    margin-bottom: 65px;
+    margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .filling {
+    display: flex;
+    flex-direction: column;
+    height: 220px;
+  }
+
+  .main-container {
+    height: 270px;
+  }
+
+  .add-btn {
+    margin-left: 0;
+    margin-bottom: 0px;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .main-container {
+    height: 420px;
+  }
+
+  .filling {
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filling-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .filling-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start
+  }
+
+  .filling-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

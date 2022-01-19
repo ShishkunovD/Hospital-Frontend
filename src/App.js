@@ -1,9 +1,7 @@
+import React from 'react';
 import useRoutes from './Routes';
 import useAuth from './auth.check';
 import { AuthContext } from './context/AuthContext';
-
-import './Style/main-style/filling.css';
-import './Style/main-style/table.css'
 
 const App = () => {
   const { isAuth, loginCheck, logout } = useAuth();

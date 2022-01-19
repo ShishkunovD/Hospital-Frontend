@@ -18,6 +18,29 @@
   justify-content: space-between;
   width: 95%;
   margin: auto 0;
+  height: 79px;
+}
+
+.filling-inputs {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.filling-block-1 {
+  display: flex;
+  justify-content: space-between;
+  width: 48%;
+}
+
+.filling-block-2 {
+  display: flex;
+  justify-content: space-around;
+  width: 48%;
+}
+
+#input-name, #input-complaints, #input-doctor {
+  background-color: white;
 }
 
 .name-patient {
@@ -64,6 +87,8 @@
 .add-btn {
   width: 155px;
   height: 51px;
+  margin-bottom: 25px;
+  margin-left: 5px;
   font-size: 18px;
   margin-top: auto;
   cursor: pointer;
