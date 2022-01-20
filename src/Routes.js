@@ -1,3 +1,4 @@
+import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import MainPage from './components/mainPage/MainPage';
 import Login from './components/enter/Login';

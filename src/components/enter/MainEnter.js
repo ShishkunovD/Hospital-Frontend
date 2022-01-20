@@ -1,3 +1,4 @@
+import React from 'react';
 import Form from './Form';
 import MainImg from '../../Images/Main.png';
 import '../../Style/enter-style/mainEnter.css';

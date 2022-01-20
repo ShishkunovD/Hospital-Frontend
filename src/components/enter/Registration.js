@@ -1,3 +1,4 @@
+import React from "react";
 import MainEnter from "./MainEnter";
 import Header from "../Header";
 

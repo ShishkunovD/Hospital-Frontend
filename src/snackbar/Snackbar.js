@@ -1,3 +1,4 @@
+import React from 'react';
 import {Alert, Snackbar } from '@mui/material';
 
 const Snack = ({ isOpen, onSetIsSnackOpen, messageSnack }) => {

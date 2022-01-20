@@ -1,0 +1,140 @@
+@media screen and (max-width: 1250px) {
+  .filling {
+    display: flex;
+    flex-direction: column;
+    height: 130px;
+  }
+
+  .main-container {
+    height: 190px;
+  }
+
+  .add-btn {
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 965px) {
+  .main-container {
+    height: 215px;
+  }
+
+  .filling {
+    display: flex;
+    flex-direction: row;
+    margin: 20px auto 10px auto;
+  }
+
+  .name-doctor-block {
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+  }
+
+  .calendar-complaints-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 160px;
+  }
+
+  .input-calendar .MuiOutlinedInput-root {
+    width: 265px;
+  }
+
+  .input-calendar.MuiTextField-root {
+    width: 265px;
+    height: 56px;
+  }
+
+  .add-btn {
+    margin-bottom: 65px;
+    margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .filling {
+    display: flex;
+    flex-direction: column;
+    height: 240px;
+  }
+
+  .main-container {
+    height: 270px;
+  }
+
+  .add-btn {
+    margin: 10px 0 0 0px;
+  }
+
+  .input-complaints-container, .input-doctor-container {
+    margin-left: 0px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .main-container {
+    height: 455px;
+  }
+
+  .filling {
+    height: 465px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filling-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .name-doctor-block {
+    height: 145px;
+  }
+
+  .calendar-complaints-block {
+    margin-top: 40px;
+    height: 145px;
+  }
+
+  .input-name .MuiOutlinedInput-root, 
+  .input-doctor .MuiOutlinedInput-root, 
+  .input-complaints .MuiOutlinedInput-root, 
+  .input-name.MuiTextField-root, 
+  .input-doctor.MuiTextField-root, 
+  .input-complaints.MuiTextField-root, 
+  .input-calendar .MuiOutlinedInput-root,
+  .input-calendar.MuiTextField-root {
+    width: 330px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .input-name .MuiOutlinedInput-root, 
+  .input-doctor .MuiOutlinedInput-root, 
+  .input-complaints .MuiOutlinedInput-root, 
+  .input-name.MuiTextField-root, 
+  .input-doctor.MuiTextField-root, 
+  .input-complaints.MuiTextField-root,
+  .input-calendar .MuiOutlinedInput-root,
+  .input-calendar.MuiTextField-root {
+    width: 265px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .filling-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
+  }
+
+  .filling-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
