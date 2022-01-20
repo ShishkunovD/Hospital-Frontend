@@ -14,15 +14,15 @@ const Reseptions = ({ reseptions }) => {
 
   const headerTable = ['Имя', 'Врач', 'Дата', 'Жалобы', ''];
 
-  return(
+  return (
     <TableContainer>
-      <Table className='table-container' style={{width: `95%`}} >
+      <Table className='table-container' >
         <TableHead  className='table-header'>
           <TableRow>
-          {headerTable.map((item, index) => <TableCell key={index}>{item}</TableCell>)}
+            {headerTable.map((item, index) => <TableCell key={index}>{item}</TableCell>)}
           </TableRow>
         </TableHead>
-        <TableBody style={{width: `90%`}}>
+        <TableBody>
           {reseptions.map((item, index) => <OneReseption key={index} item={item}/>)}
         </TableBody>
       </Table>

@@ -2,13 +2,16 @@
   margin: 24px auto 0 auto;
 }
 
+.css-rqglhn-MuiTable-root {
+  width: 95px;
+}
+
 .table {
   width: 90%;
   margin: 0 auto;
 }
 
 .table-header {
-  width: 90%;
   background-color: #C4C4C4;
   height: 60px;
   font-size: 18px;
@@ -22,12 +25,7 @@ th {
   justify-content: space-between;
 }
 
-.table-content {
-  border-top: 1px solid black;
-  border: 1px solid #C5E9FF;
-}
-
-.oneCell {
+.one-cell {
   border: 1px solid black;
   background-color: white;
   display: flex;
@@ -42,4 +40,9 @@ th {
 .container-delete-edit {
   display: flex;
   justify-content: space-evenly;
+}
+
+.reseptions {
+  width: 95%;
+  margin: 0 auto;
 }

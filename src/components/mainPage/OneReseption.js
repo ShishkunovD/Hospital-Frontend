@@ -4,28 +4,29 @@ import {
   TableCell 
 } from '@mui/material';
 import Basket from '../../Images/Basket.png';
-import Pancel from '../../Images/Pancel.png';
+import Pencel from '../../Images/Pancel.png';
 
 const OneReseption = ({ item }) => {
+ const { name, doctor, date, complaints } = item;
 
- const {name, doctor, date, complaints} = item;
-
-  return(
+  return (
     <TableRow className='table-content'>
-      <TableCell className='oneCell'>{name}</TableCell>
-      <TableCell className='oneCell'>{doctor}</TableCell>
-      <TableCell className='oneCell'>{date}</TableCell>
-      <TableCell className='oneCell'>{complaints}</TableCell>
-      <TableCell className='oneCell delete-edit'>
+      <TableCell className='one-cell'>{name}</TableCell>
+      <TableCell className='one-cell'>{doctor}</TableCell>
+      <TableCell className='one-cell'>{date}</TableCell>
+      <TableCell className='one-cell'>{complaints}</TableCell>
+      <TableCell className='one-cell delete-edit'>
         <div className='container-delete-edit'>
           <span>
             <img 
               src={Basket}
+              alt={Basket}
             />
           </span>
           <span>
             <img 
-              src={Pancel}
+              src={Pencel}
+              alt={Pencel}
             />
           </span>
         </div>

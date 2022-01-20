@@ -39,8 +39,17 @@
   width: 48%;
 }
 
-#input-name, #input-complaints, #input-doctor {
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+  width: 265px;
+  height: 56px;
+}
+
+.input-name, .input-complaints, .input-doctor {
   background-color: white;
+}
+
+.input-complaints-container, .input-doctor-container {
+  margin-left: 5px;
 }
 
 .name-patient {

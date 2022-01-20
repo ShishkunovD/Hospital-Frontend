@@ -16,7 +16,7 @@
 
 @media screen and (max-width: 965px) {
   .main-container {
-    height: 200px;
+    height: 215px;
   }
 
   .filling {
@@ -35,7 +35,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 138px;
+    height: 160px;
   }
 
   .add-btn {
@@ -48,7 +48,7 @@
   .filling {
     display: flex;
     flex-direction: column;
-    height: 220px;
+    height: 240px;
   }
 
   .main-container {
@@ -56,19 +56,21 @@
   }
 
   .add-btn {
-    margin-left: 0;
-    margin-bottom: 0px;
-    margin-top: 10px;
+    margin: 10px 0 0 0px;
+  }
+
+  .input-complaints-container, .input-doctor-container {
+    margin-left: 0px;
   }
 }
 
 @media screen and (max-width: 580px) {
   .main-container {
-    height: 420px;
+    height: 455px;
   }
 
   .filling {
-    height: 380px;
+    height: 465px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,13 +81,32 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .filling-block-1 {
+    height: 145px;
+  }
+
+  .filling-block-2 {
+    margin-top: 40px;
+    height: 145px;
+  }
+
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: 330px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: 265px;
+  }
 }
 
 @media screen and (max-width: 380px) {
   .filling-inputs {
     display: flex;
     flex-direction: column;
-    align-items:flex-start
+    align-items: flex-start
   }
 
   .filling-inputs {
