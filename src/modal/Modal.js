@@ -2,12 +2,6 @@ import { Dialog, DialogTitle } from "@mui/material"
 
 const Modal = () => {
 
-  const objDialog = {
-    title: 'Изменить приём',
-  }
-
-  const { title } = objDialog; 
-
   return(
     <>
       <Dialog 
@@ -15,7 +9,7 @@ const Modal = () => {
         onClose={modalClose}
         aria-labelledby="Change-reseption-title"
       >
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle>Изменить приём</DialogTitle>
       </Dialog>
     </>
   )

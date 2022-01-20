@@ -1,8 +1,14 @@
-import React, {useState, useContext, useEffect} from 'react';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import {LocalizationProvider, DatePicker} from '@mui/lab';
-import { TextField, MenuItem} from '@mui/material/';
+import 
+  React, {
+  useState,
+  useContext,
+  useEffect
+} from 'react';
+import axios from 'axios';
 import moment from 'moment';
+import { TextField, MenuItem } from '@mui/material';
+import { LocalizationProvider, DatePicker } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { AuthContext } from '../../context/AuthContext';
 import '../../Style/main-style/filling.css';
 import '../../Style/main-style/filling-media.css';
@@ -27,7 +33,7 @@ const Filling = ({
     complaint: ''
   })
 
-  const {inputName, selectDoctor, date, complaint} = inputField;
+  const { inputName, selectDoctor, date, complaint } = inputField;
 
   const dateFormat = moment(date).format('DD.MM.YYYY');
   const auth = useContext(AuthContext);
@@ -37,48 +43,41 @@ const Filling = ({
   }
 
   useEffect(() => {
-    const getAllReseption = async () => {
-      const resp = await fetch ('http://localhost:8000/api/reseption/getAllReseption', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${auth.isAuth}`
-        }
-      });
-      const result = await resp.json();
-      setReseptions(result.data);
-    }
-    getAllReseption();
+    axios.get('http://localhost:8000/api/reseption/getAllReseption', {
+      headers: {
+        Authorization: `Bearer ${auth.isAuth}`
+      }
+    }).then(res => {
+      setReseptions(res.data.data);
+    });
   }, [])
 
   const addReseption = async () => {
-    const resp = await fetch ('http://localhost:8000/api/reseption/createReseption', {
-      method: 'POST',
+    await axios.post('http://localhost:8000/api/reseption/createReseption', {
       headers: {
-        'Content-type' : 'application/json;charset=utf-8',
-        'Access-Control-Allow-Origin' : '*',
         Authorization: `Bearer ${auth.isAuth}`
-      },
-      body: JSON.stringify({
-        name: inputName.trim(),
-        doctor: selectDoctor,
-        date: dateFormat,
-        complaints: complaint.trim()
-      })
+      }
+    },
+    {
+      name: inputName.trim(),
+      doctor: selectDoctor,
+      date: dateFormat,
+      complaints: complaint.trim()
+    }).then(res => {
+      setInputField({...inputField, inputName: '', selectDoctor: '', complaint: ''});
+      reseptions.push(res.data.data);
+      setReseptions([...reseptions]);
     });
-    const result = await resp.json();
-    setInputField({...inputField, inputName: '', selectDoctor: '', complaint: ''})
-    reseptions.push(result.data);
-    setReseptions([...reseptions]);
   }
 
   return (
     <div className="filling">
       <div className="filling-inputs">
-        <div className="filling-block-1">
+        <div className="name-doctor-block">
           <TextField 
             className="input-name"
             label="Имя"
-            type='text'
+            type="text"
             variant="outlined"
             value={inputName}
             onChange = {(e) => setInputField({...inputField, inputName: e.target.value})}
@@ -96,10 +95,12 @@ const Filling = ({
             </TextField>
           </div>
         </div>
-        <div className="filling-block-2">
+        <div className="calendar-complaints-block">
           <LocalizationProvider dateAdapter={AdapterDateFns} >
             <DatePicker
+              
               renderInput={(params) => <TextField 
+                className='input-calendar'
                 {...params} 
               />}
               inputFormat="dd/MM/yyyy"

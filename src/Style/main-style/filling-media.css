@@ -25,17 +25,26 @@
     margin: 20px auto 10px auto;
   }
 
-  .filling-block-1 {
+  .name-doctor-block {
     display: flex;
     flex-direction: column;
     height: 160px;
   }
 
-  .filling-block-2 {
+  .calendar-complaints-block {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 160px;
+  }
+
+  .input-calendar .MuiOutlinedInput-root {
+    width: 265px;
+  }
+
+  .input-calendar.MuiTextField-root {
+    width: 265px;
+    height: 56px;
   }
 
   .add-btn {
@@ -82,22 +91,36 @@
     align-items: center;
   }
 
-  .filling-block-1 {
+  .name-doctor-block {
     height: 145px;
   }
 
-  .filling-block-2 {
+  .calendar-complaints-block {
     margin-top: 40px;
     height: 145px;
   }
 
-  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+  .input-name .MuiOutlinedInput-root, 
+  .input-doctor .MuiOutlinedInput-root, 
+  .input-complaints .MuiOutlinedInput-root, 
+  .input-name.MuiTextField-root, 
+  .input-doctor.MuiTextField-root, 
+  .input-complaints.MuiTextField-root, 
+  .input-calendar .MuiOutlinedInput-root,
+  .input-calendar.MuiTextField-root {
     width: 330px;
   }
 }
 
 @media screen and (max-width: 460px) {
-  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+  .input-name .MuiOutlinedInput-root, 
+  .input-doctor .MuiOutlinedInput-root, 
+  .input-complaints .MuiOutlinedInput-root, 
+  .input-name.MuiTextField-root, 
+  .input-doctor.MuiTextField-root, 
+  .input-complaints.MuiTextField-root,
+  .input-calendar .MuiOutlinedInput-root,
+  .input-calendar.MuiTextField-root {
     width: 265px;
   }
 }

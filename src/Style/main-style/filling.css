@@ -27,19 +27,43 @@
   width: 100%;
 }
 
-.filling-block-1 {
+.name-doctor-block {
   display: flex;
   justify-content: space-between;
   width: 48%;
 }
 
-.filling-block-2 {
+.calendar-complaints-block {
   display: flex;
   justify-content: space-around;
   width: 48%;
 }
 
-.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+.input-name .MuiOutlinedInput-root {
+  margin-right: 5px;
+  width: 100%;
+}
+
+.input-name.MuiTextField-root {
+  width: 265px;
+  height: 56px;
+  margin-right: 5px;
+}
+
+.input-doctor .MuiOutlinedInput-root {
+  width: 265px;
+}
+
+.input-doctor.MuiTextField-root {
+  width: 265px;
+  height: 56px;
+}
+
+.input-complaints .MuiOutlinedInput-root {
+  width: 265px;
+}
+
+.input-complaints.MuiTextField-root {
   width: 265px;
   height: 56px;
 }
