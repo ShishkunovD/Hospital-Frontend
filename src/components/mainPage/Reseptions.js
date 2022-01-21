@@ -10,9 +10,11 @@ import {
 import OneReseption from './OneReseption';
 import '../../Style/main-style/table.css';
 
-const Reseptions = ({ reseptions }) => {
+const Reseptions = ({ reseptions, elemArray, openModal, setOpenModal, doctors, setInputField, inputField, onModalOpen, setReseptions }) => {
 
   const headerTable = ['Имя', 'Врач', 'Дата', 'Жалобы', ''];
+
+  // console.log(elemArray);
 
   return (
     <TableContainer>
@@ -23,7 +25,19 @@ const Reseptions = ({ reseptions }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {reseptions.map((item, index) => <OneReseption key={index} item={item}/>)}
+          {reseptions.map((item, index) => <OneReseption 
+            key={ index }
+            item={ item }
+            index={ index }
+            elemArray={ elemArray }
+            openModal={ openModal }
+            setOpenModal={ setOpenModal }
+            doctors={ doctors }
+            setInputField={setInputField}
+            inputField={inputField}
+            onModalOpen={onModalOpen}
+            setReseptions={setReseptions}
+          />)}
         </TableBody>
       </Table>
     </TableContainer>

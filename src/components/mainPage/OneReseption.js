@@ -3,11 +3,19 @@ import {
   TableRow,
   TableCell 
 } from '@mui/material';
+import  Modal  from '../../modal/Modal';
 import Basket from '../../Images/Basket.png';
 import Pencel from '../../Images/Pancel.png';
 
-const OneReseption = ({ item }) => {
+const OneReseption = ({ item, index, elemArray, openModal, setOpenModal, doctors, setInputField, inputField, onModalOpen, setReseptions }) => {
  const { name, doctor, date, complaints } = item;
+
+//  const modalOpen = () => {
+//   setIndexReseption(index);
+//   setOpenModal(true);
+// }
+  
+  // console.log(elemArray);
 
   return (
     <TableRow className='table-content'>
@@ -25,12 +33,22 @@ const OneReseption = ({ item }) => {
           </span>
           <span>
             <img 
+              onClick={() => {onModalOpen(index)}}
               src={Pencel}
               alt={Pencel}
             />
           </span>
         </div>
       </TableCell>
+      {openModal && <Modal 
+        openModal={openModal} 
+        setOpenModal={setOpenModal} 
+        doctors={doctors} 
+        elemArray={elemArray} 
+        setInputField={setInputField} 
+        inputField={inputField}
+        setReseptions={setReseptions}/>
+      }
     </TableRow>
   )
 }

@@ -1,6 +1,5 @@
 import 
   React, {
-  useState,
   useContext,
   useEffect
 } from 'react';
@@ -15,32 +14,33 @@ import '../../Style/main-style/filling-media.css';
 
 const Filling = ({
   reseptions,
-  setReseptions
+  setReseptions,
+  doctors,
+  inputField,
+  setInputField
 }) => {
 
-  const doctors = [
-    'Аганесов Александр Георгиевич', 
-    'Белов Юрий Владимирович', 
-    'Давыдов Михаил Иванович'
-  ];
+  // const doctors = [
+  //   'Аганесов Александр Георгиевич', 
+  //   'Белов Юрий Владимирович', 
+  //   'Давыдов Михаил Иванович'
+  // ];
 
-  const dateNow = new Date();
-
-  const [inputField, setInputField] = useState({
-    inutName: '',
-    selectDoctor: '',
-    date: dateNow,
-    complaint: ''
-  })
+  // const [inputField, setInputField] = useState({
+  //   inutName: '',
+  //   selectDoctor: '',
+  //   date: dateNow,
+  //   complaint: ''
+  // })
 
   const { inputName, selectDoctor, date, complaint } = inputField;
 
   const dateFormat = moment(date).format('DD.MM.YYYY');
   const auth = useContext(AuthContext);
 
-  const dataHandler = (newValue) => {
-    setInputField({...inputField, date: newValue});
-  }
+  // const dataHandler = (newValue) => {
+  //   setInputField({...inputField, date: newValue});
+  // }
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/reseption/getAllReseption', {
@@ -54,15 +54,15 @@ const Filling = ({
 
   const addReseption = async () => {
     await axios.post('http://localhost:8000/api/reseption/createReseption', {
-      headers: {
-        Authorization: `Bearer ${auth.isAuth}`
-      }
-    },
-    {
       name: inputName.trim(),
       doctor: selectDoctor,
       date: dateFormat,
       complaints: complaint.trim()
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${auth.isAuth}`
+      }
     }).then(res => {
       setInputField({...inputField, inputName: '', selectDoctor: '', complaint: ''});
       reseptions.push(res.data.data);
@@ -79,7 +79,7 @@ const Filling = ({
             label="Имя"
             type="text"
             variant="outlined"
-            value={inputName}
+            defaultValue={inputName}
             onChange = {(e) => setInputField({...inputField, inputName: e.target.value})}
           />
           <div className="input-doctor-container">
@@ -104,8 +104,8 @@ const Filling = ({
                 {...params} 
               />}
               inputFormat="dd/MM/yyyy"
-              defaultValue={date}
-              onChange={dataHandler}
+              value={date || new Date()}
+              onChange={(e) => setInputField({...inputField, date: e})}
             />
           </LocalizationProvider>
           <div className="input-complaints-container">
