@@ -4,11 +4,25 @@ import {
   TableCell 
 } from '@mui/material';
 import  Modal  from '../../modal/Modal';
+import ModalDelete from '../../modal/Modal.delete';
 import Basket from '../../Images/Basket.png';
 import Pencel from '../../Images/Pancel.png';
 import '../../Style/main-style/modal.css';
 
-const OneReseption = ({ item, index, elemArray, openModal, setOpenModal, doctors, setInputField, inputField, onModalOpen, setReseptions }) => {
+const OneReseption = ({ 
+  item,
+  index,
+  elemArray,
+  openModal,
+  setOpenModal,
+  doctors,
+  setInputField,
+  inputField,
+  onModalOpen,
+  openModalDelete,
+  setOpenModalDelete,
+  handleModalOpenDelete,
+  setReseptions }) => {
  const { name, doctor, date, complaints } = item;
 
   return (
@@ -20,7 +34,9 @@ const OneReseption = ({ item, index, elemArray, openModal, setOpenModal, doctors
       <TableCell className='one-cell delete-edit'>
         <div className='container-delete-edit'>
           <span>
-            <img 
+            <img
+              className='basket'
+              onClick={() => {handleModalOpenDelete(index)}}
               src={Basket}
               alt={Basket}
             />
@@ -36,14 +52,19 @@ const OneReseption = ({ item, index, elemArray, openModal, setOpenModal, doctors
         </div>
       </TableCell>
       {openModal && <Modal 
-        openModal={openModal} 
-        setOpenModal={setOpenModal} 
-        doctors={doctors} 
-        elemArray={elemArray} 
-        setInputField={setInputField} 
-        inputField={inputField}
-        setReseptions={setReseptions}/>
+        openModal={ openModal } 
+        setOpenModal={ setOpenModal } 
+        doctors={ doctors } 
+        elemArray={ elemArray } 
+        setInputField={ setInputField } 
+        inputField={ inputField }
+        setReseptions={ setReseptions }/>
       }
+      {openModalDelete && <ModalDelete
+        elemArray={ elemArray }
+        openModalDelete={ openModalDelete }
+        setOpenModalDelete = { setOpenModalDelete }
+        setReseptions={setReseptions}/>}
     </TableRow>
   )
 }

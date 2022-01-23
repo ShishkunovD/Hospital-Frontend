@@ -10,11 +10,21 @@ import {
 import OneReseption from './OneReseption';
 import '../../Style/main-style/table.css';
 
-const Reseptions = ({ reseptions, elemArray, openModal, setOpenModal, doctors, setInputField, inputField, onModalOpen, setReseptions }) => {
+const Reseptions = ({ 
+  reseptions,
+  elemArray,
+  openModal,
+  setOpenModal,
+  doctors,
+  setInputField,
+  inputField,
+  onModalOpen,
+  openModalDelete,
+  setOpenModalDelete,
+  handleModalOpenDelete,
+  setReseptions }) => {
 
   const headerTable = ['Имя', 'Врач', 'Дата', 'Жалобы', ''];
-
-  // console.log(elemArray);
 
   return (
     <TableContainer>
@@ -36,6 +46,9 @@ const Reseptions = ({ reseptions, elemArray, openModal, setOpenModal, doctors, s
             setInputField={ setInputField }
             inputField={ inputField }
             onModalOpen={ onModalOpen }
+            openModalDelete={ openModalDelete }
+            setOpenModalDelete={ setOpenModalDelete }
+            handleModalOpenDelete={ handleModalOpenDelete }
             setReseptions={ setReseptions }
           />)}
         </TableBody>

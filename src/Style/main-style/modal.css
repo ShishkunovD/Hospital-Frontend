@@ -14,8 +14,6 @@
   padding: 0 0 0 15px;
 }
 
-/* <h2 class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root modal-title css-bdhsul-MuiTypography-root-MuiDialogTitle-root" */
-
 .modal-title.MuiTypography-h6{
   font-size: 36px;
 }
@@ -25,5 +23,9 @@
 }
 
 .pancel {
+  cursor: pointer;
+}
+
+.basket {
   cursor: pointer;
 }

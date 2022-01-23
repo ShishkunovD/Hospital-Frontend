@@ -16,7 +16,14 @@ import { AuthContext } from "../context/AuthContext";
 import '../Style/main-style/modal.css'
 import '../Style/main-style/modal-media.css'
 
-const Modal = ({ openModal, setOpenModal, doctors, elemArray, setReseptions }) => {
+const Modal = ({
+  openModal,
+  setOpenModal,
+  doctors,
+  elemArray,
+  setReseptions
+}) => {
+  
   const { name, doctor, date, complaints, _id } = elemArray;
   const auth = useContext(AuthContext);
 

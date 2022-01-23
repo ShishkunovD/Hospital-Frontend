@@ -28,12 +28,18 @@ const MainPage = () => {
   const [reseptions, setReseptions] = useState([]);
 
   const [openModal, setOpenModal] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
 
   const [indexReseption, setIndexReseption] = useState('');
 
   const handleModalOpen = (index) => {
     setIndexReseption(index);
     setOpenModal(true);
+  }
+
+  const handleModalOpenDelete = (index) => {
+    setIndexReseption(index);
+    setOpenModalDelete(true);
   }
 
   return (
@@ -60,6 +66,9 @@ const MainPage = () => {
           setInputField={ setInputField }
           inputField={ inputField }
           onModalOpen={ handleModalOpen }
+          openModalDelete={openModalDelete}
+          setOpenModalDelete = { setOpenModalDelete }
+          handleModalOpenDelete ={ handleModalOpenDelete }
           setReseptions={setReseptions}
         />
       </div>
