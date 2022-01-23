@@ -6,16 +6,10 @@ import {
 import  Modal  from '../../modal/Modal';
 import Basket from '../../Images/Basket.png';
 import Pencel from '../../Images/Pancel.png';
+import '../../Style/main-style/modal.css';
 
 const OneReseption = ({ item, index, elemArray, openModal, setOpenModal, doctors, setInputField, inputField, onModalOpen, setReseptions }) => {
  const { name, doctor, date, complaints } = item;
-
-//  const modalOpen = () => {
-//   setIndexReseption(index);
-//   setOpenModal(true);
-// }
-  
-  // console.log(elemArray);
 
   return (
     <TableRow className='table-content'>
@@ -33,6 +27,7 @@ const OneReseption = ({ item, index, elemArray, openModal, setOpenModal, doctors
           </span>
           <span>
             <img 
+              className='pancel'
               onClick={() => {onModalOpen(index)}}
               src={Pencel}
               alt={Pencel}

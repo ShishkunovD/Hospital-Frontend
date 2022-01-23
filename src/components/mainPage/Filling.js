@@ -20,27 +20,10 @@ const Filling = ({
   setInputField
 }) => {
 
-  // const doctors = [
-  //   'Аганесов Александр Георгиевич', 
-  //   'Белов Юрий Владимирович', 
-  //   'Давыдов Михаил Иванович'
-  // ];
-
-  // const [inputField, setInputField] = useState({
-  //   inutName: '',
-  //   selectDoctor: '',
-  //   date: dateNow,
-  //   complaint: ''
-  // })
-
   const { inputName, selectDoctor, date, complaint } = inputField;
 
   const dateFormat = moment(date).format('DD.MM.YYYY');
   const auth = useContext(AuthContext);
-
-  // const dataHandler = (newValue) => {
-  //   setInputField({...inputField, date: newValue});
-  // }
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/reseption/getAllReseption', {
@@ -50,7 +33,7 @@ const Filling = ({
     }).then(res => {
       setReseptions(res.data.data);
     });
-  }, [])
+  }, [auth.isAuth, setReseptions])
 
   const addReseption = async () => {
     await axios.post('http://localhost:8000/api/reseption/createReseption', {
@@ -88,7 +71,7 @@ const Filling = ({
               select
               label="Врач"
               helperText="Please select your doctor"
-              defaultValue={selectDoctor}
+              value={selectDoctor}
               onChange = {(e) => setInputField({...inputField, selectDoctor: e.target.value})}
             >
               {doctors.map((item, index) => <MenuItem key={index} value={item}>{item}</MenuItem>)}
@@ -101,7 +84,7 @@ const Filling = ({
               
               renderInput={(params) => <TextField 
                 className='input-calendar'
-                {...params} 
+                {...params}
               />}
               inputFormat="dd/MM/yyyy"
               value={date || new Date()}

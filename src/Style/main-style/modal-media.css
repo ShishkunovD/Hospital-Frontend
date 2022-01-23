@@ -1,0 +1,31 @@
+@media screen and (max-width: 600px) {
+  .modal-container {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .modal-container {
+    width: 300px;
+  }
+
+  .modal-title.MuiTypography-h6{
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .modal-container {
+    width: 230px;        
+  }
+}
+
+@media screen and (max-width: 335px) {
+  .modal-container {
+    width: 178px;
+  }
+
+  .modal-title.MuiTypography-h6{
+    font-size: 18px;
+  }
+}

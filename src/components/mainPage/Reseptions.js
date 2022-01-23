@@ -33,10 +33,10 @@ const Reseptions = ({ reseptions, elemArray, openModal, setOpenModal, doctors, s
             openModal={ openModal }
             setOpenModal={ setOpenModal }
             doctors={ doctors }
-            setInputField={setInputField}
-            inputField={inputField}
-            onModalOpen={onModalOpen}
-            setReseptions={setReseptions}
+            setInputField={ setInputField }
+            inputField={ inputField }
+            onModalOpen={ onModalOpen }
+            setReseptions={ setReseptions }
           />)}
         </TableBody>
       </Table>
