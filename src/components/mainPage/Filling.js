@@ -1,5 +1,6 @@
 import 
   React, {
+  useCallback,
   useContext,
   useEffect
 } from 'react';
@@ -24,19 +25,13 @@ const Filling = ({
   const dateFormat = moment(date).format('DD.MM.YYYY');
   const auth = useContext(AuthContext);
 
-  const checkAddButton = () => {
-    if(inputName && selectDoctor && date && complaint) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+  const checkAddButton = useCallback(() => {
+    return !(inputName && selectDoctor && date && complaint);
+  }, [inputName, selectDoctor, date, complaint]);
+
 
   useEffect(() => {
     checkAddButton();
-  });
-
-  useEffect(() => {
     axios.get('http://localhost:8000/api/reseption/getAllReseption', {
       headers: {
         Authorization: `Bearer ${auth.isAuth}`
@@ -44,7 +39,8 @@ const Filling = ({
     }).then(res => {
       setReseptions(res.data.data);
     });
-  }, [auth.isAuth, setReseptions])
+    
+  }, [auth.isAuth, setReseptions, checkAddButton]);
 
   const addReseption = async () => {
     await axios.post('http://localhost:8000/api/reseption/createReseption', {
@@ -73,7 +69,7 @@ const Filling = ({
             label="Имя"
             type="text"
             variant="outlined"
-            defaultValue={inputName}
+            value={inputName}
             onChange = {(e) => setInputField({...inputField, inputName: e.target.value})}
           />
           <div className="input-doctor-container">

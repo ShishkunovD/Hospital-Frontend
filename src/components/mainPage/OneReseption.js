@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   TableRow,
   TableCell 
@@ -13,17 +13,26 @@ const OneReseption = ({
   item,
   index,
   elemArray,
-  openModal,
-  setOpenModal,
+  setIndexReseption,
   doctors,
   setInputField,
   inputField,
-  onModalOpen,
-  openModalDelete,
-  setOpenModalDelete,
-  handleModalOpenDelete,
   setReseptions }) => {
  const { name, doctor, date, complaints } = item;
+
+   // Arrays for Modal window
+   const [openModal, setOpenModal] = useState(false);
+   const [openModalDelete, setOpenModalDelete] = useState(false);
+
+   const handleModalOpen = (index) => {
+    setIndexReseption(index);
+    setOpenModal(true);
+  }
+
+  const handleModalOpenDelete = (index) => {
+    setIndexReseption(index);
+    setOpenModalDelete(true);
+  }
 
   return (
     <TableRow className='table-content'>
@@ -44,7 +53,7 @@ const OneReseption = ({
           <span>
             <img 
               className='pancel'
-              onClick={() => {onModalOpen(index)}}
+              onClick={() => {handleModalOpen(index)}}
               src={Pencel}
               alt={Pencel}
             />

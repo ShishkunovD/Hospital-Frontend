@@ -22,25 +22,13 @@ const MainPage = () => {
     selectDoctor: '',
     date: dateNow,
     complaint: ''
-  })
+  });
 
   // Array with our reseptions 
   const [reseptions, setReseptions] = useState([]);
-  // Arrays for Modal window
-  const [openModal, setOpenModal] = useState(false);
-  const [openModalDelete, setOpenModalDelete] = useState(false);
+
   // Array for get chosen reseption
   const [indexReseption, setIndexReseption] = useState('');
-
-  const handleModalOpen = (index) => {
-    setIndexReseption(index);
-    setOpenModal(true);
-  }
-
-  const handleModalOpenDelete = (index) => {
-    setIndexReseption(index);
-    setOpenModalDelete(true);
-  }
 
   return (
     <div className="main-page">
@@ -49,8 +37,6 @@ const MainPage = () => {
         <Filling 
           reseptions={ reseptions }
           setReseptions={ setReseptions }
-          openModal={ openModal }
-          setOpenModal={ setOpenModal }
           doctors={ doctors }
           inputField={ inputField }
           setInputField={ setInputField }
@@ -60,15 +46,10 @@ const MainPage = () => {
         <Reseptions 
           reseptions={ reseptions } 
           elemArray={ reseptions[indexReseption] }
-          openModal={ openModal }
-          setOpenModal={ setOpenModal }
+          setIndexReseption={setIndexReseption}
           doctors={ doctors }
           setInputField={ setInputField }
           inputField={ inputField }
-          onModalOpen={ handleModalOpen }
-          openModalDelete={openModalDelete}
-          setOpenModalDelete = { setOpenModalDelete }
-          handleModalOpenDelete ={ handleModalOpenDelete }
           setReseptions={ setReseptions }
         />
       </div>

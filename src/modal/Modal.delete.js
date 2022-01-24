@@ -24,7 +24,6 @@ const ModalDelete = ({
       }
     }).then(res => {
       setReseptions(res.data.data);
-      setOpenModalDelete(false);
     });
   }
 
