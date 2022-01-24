@@ -1,6 +1,6 @@
 import 
   React, {
-  useState,
+  useCallback,
   useContext,
   useEffect
 } from 'react';
@@ -15,34 +15,23 @@ import '../../Style/main-style/filling-media.css';
 
 const Filling = ({
   reseptions,
-  setReseptions
-}) => {
-
-  const doctors = [
-    'Аганесов Александр Георгиевич', 
-    'Белов Юрий Владимирович', 
-    'Давыдов Михаил Иванович'
-  ];
-
-  const dateNow = new Date();
-
-  const [inputField, setInputField] = useState({
-    inutName: '',
-    selectDoctor: '',
-    date: dateNow,
-    complaint: ''
-  })
+  setReseptions,
+  doctors,
+  inputField,
+  setInputField }) => {
 
   const { inputName, selectDoctor, date, complaint } = inputField;
 
   const dateFormat = moment(date).format('DD.MM.YYYY');
   const auth = useContext(AuthContext);
 
-  const dataHandler = (newValue) => {
-    setInputField({...inputField, date: newValue});
-  }
+  const checkAddButton = useCallback(() => {
+    return !(inputName && selectDoctor && date && complaint);
+  }, [inputName, selectDoctor, date, complaint]);
+
 
   useEffect(() => {
+    checkAddButton();
     axios.get('http://localhost:8000/api/reseption/getAllReseption', {
       headers: {
         Authorization: `Bearer ${auth.isAuth}`
@@ -50,19 +39,20 @@ const Filling = ({
     }).then(res => {
       setReseptions(res.data.data);
     });
-  }, [])
+    
+  }, [auth.isAuth, setReseptions, checkAddButton]);
 
   const addReseption = async () => {
     await axios.post('http://localhost:8000/api/reseption/createReseption', {
-      headers: {
-        Authorization: `Bearer ${auth.isAuth}`
-      }
-    },
-    {
       name: inputName.trim(),
       doctor: selectDoctor,
       date: dateFormat,
       complaints: complaint.trim()
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${auth.isAuth}`
+      }
     }).then(res => {
       setInputField({...inputField, inputName: '', selectDoctor: '', complaint: ''});
       reseptions.push(res.data.data);
@@ -88,7 +78,7 @@ const Filling = ({
               select
               label="Врач"
               helperText="Please select your doctor"
-              defaultValue={selectDoctor}
+              value={selectDoctor}
               onChange = {(e) => setInputField({...inputField, selectDoctor: e.target.value})}
             >
               {doctors.map((item, index) => <MenuItem key={index} value={item}>{item}</MenuItem>)}
@@ -98,14 +88,13 @@ const Filling = ({
         <div className="calendar-complaints-block">
           <LocalizationProvider dateAdapter={AdapterDateFns} >
             <DatePicker
-              
               renderInput={(params) => <TextField 
                 className='input-calendar'
-                {...params} 
+                {...params}
               />}
               inputFormat="dd/MM/yyyy"
-              defaultValue={date}
-              onChange={dataHandler}
+              value={date || new Date()}
+              onChange={(e) => setInputField({...inputField, date: e})}
             />
           </LocalizationProvider>
           <div className="input-complaints-container">
@@ -119,7 +108,7 @@ const Filling = ({
           </div>
         </div>
       </div>
-      <button className="add-btn" onClick={() => addReseption()}>Добавить</button>
+      <button className="add-btn" disabled={checkAddButton()} onClick={() => addReseption()}>Добавить</button>
     </div>
   )
 }

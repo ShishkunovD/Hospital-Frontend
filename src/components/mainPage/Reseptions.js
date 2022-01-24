@@ -10,7 +10,14 @@ import {
 import OneReseption from './OneReseption';
 import '../../Style/main-style/table.css';
 
-const Reseptions = ({ reseptions }) => {
+const Reseptions = ({ 
+  reseptions,
+  elemArray,
+  setIndexReseption,
+  doctors,
+  setInputField,
+  inputField,
+  setReseptions }) => {
 
   const headerTable = ['Имя', 'Врач', 'Дата', 'Жалобы', ''];
 
@@ -23,7 +30,17 @@ const Reseptions = ({ reseptions }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {reseptions.map((item, index) => <OneReseption key={index} item={item}/>)}
+          {reseptions.map((item, index) => <OneReseption 
+            key={ index }
+            item={ item }
+            index={ index }
+            elemArray={ elemArray }
+            setIndexReseption={setIndexReseption}
+            doctors={ doctors }
+            setInputField={ setInputField }
+            inputField={ inputField }
+            setReseptions={ setReseptions }
+          />)}
         </TableBody>
       </Table>
     </TableContainer>
