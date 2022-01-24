@@ -17,13 +17,24 @@ const Filling = ({
   setReseptions,
   doctors,
   inputField,
-  setInputField
-}) => {
+  setInputField }) => {
 
   const { inputName, selectDoctor, date, complaint } = inputField;
 
   const dateFormat = moment(date).format('DD.MM.YYYY');
   const auth = useContext(AuthContext);
+
+  const checkAddButton = () => {
+    if(inputName && selectDoctor && date && complaint) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  useEffect(() => {
+    checkAddButton();
+  });
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/reseption/getAllReseption', {
@@ -81,7 +92,6 @@ const Filling = ({
         <div className="calendar-complaints-block">
           <LocalizationProvider dateAdapter={AdapterDateFns} >
             <DatePicker
-              
               renderInput={(params) => <TextField 
                 className='input-calendar'
                 {...params}
@@ -102,7 +112,7 @@ const Filling = ({
           </div>
         </div>
       </div>
-      <button className="add-btn" onClick={() => addReseption()}>Добавить</button>
+      <button className="add-btn" disabled={checkAddButton()} onClick={() => addReseption()}>Добавить</button>
     </div>
   )
 }

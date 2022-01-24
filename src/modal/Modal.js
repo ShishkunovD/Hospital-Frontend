@@ -21,8 +21,7 @@ const Modal = ({
   setOpenModal,
   doctors,
   elemArray,
-  setReseptions
-}) => {
+  setReseptions }) => {
   
   const { name, doctor, date, complaints, _id } = elemArray;
   const auth = useContext(AuthContext);

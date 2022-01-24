@@ -13,21 +13,19 @@ const ModalDelete = ({
   elemArray,
   openModalDelete,
   setOpenModalDelete,
-  setReseptions
-}) => {
+  setReseptions }) => {
 
-  const auth = useContext(AuthContext)
-  const {_id} = elemArray;
+  const auth = useContext(AuthContext);
 
   const deleteReseption = async () => {
-    await axios.delete(`http://localhost:8000/api/reseption/deleteReseption?id=${_id}`, { 
+    await axios.delete(`http://localhost:8000/api/reseption/deleteReseption?id=${elemArray._id}`, { 
       headers: {
         Authorization: `Bearer ${auth.isAuth}`
       }
     }).then(res => {
       setReseptions(res.data.data);
       setOpenModalDelete(false);
-    })
+    });
   }
 
   const modalCloseDelete = () => {

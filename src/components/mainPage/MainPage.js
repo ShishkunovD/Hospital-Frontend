@@ -26,10 +26,10 @@ const MainPage = () => {
 
   // Array with our reseptions 
   const [reseptions, setReseptions] = useState([]);
-
+  // Arrays for Modal window
   const [openModal, setOpenModal] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
-
+  // Array for get chosen reseption
   const [indexReseption, setIndexReseption] = useState('');
 
   const handleModalOpen = (index) => {
@@ -51,15 +51,15 @@ const MainPage = () => {
           setReseptions={ setReseptions }
           openModal={ openModal }
           setOpenModal={ setOpenModal }
-          doctors={doctors}
-          inputField={inputField}
-          setInputField={setInputField}
+          doctors={ doctors }
+          inputField={ inputField }
+          setInputField={ setInputField }
         />
       </div>
       <div className='reseptions'>
         <Reseptions 
           reseptions={ reseptions } 
-          elemArray={reseptions[indexReseption]}
+          elemArray={ reseptions[indexReseption] }
           openModal={ openModal }
           setOpenModal={ setOpenModal }
           doctors={ doctors }
@@ -69,7 +69,7 @@ const MainPage = () => {
           openModalDelete={openModalDelete}
           setOpenModalDelete = { setOpenModalDelete }
           handleModalOpenDelete ={ handleModalOpenDelete }
-          setReseptions={setReseptions}
+          setReseptions={ setReseptions }
         />
       </div>
     </div>
