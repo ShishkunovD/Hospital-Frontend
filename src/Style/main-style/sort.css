@@ -1,0 +1,36 @@
+.main-sort-block {
+  width: 98%;
+  display: flex;
+  justify-content: end;
+  height: 120px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.sort-in-block {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  justify-content: space-around;
+}
+
+.direction-block {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  justify-content: space-around;
+}
+
+.sort-select .MuiSelect-select {
+  width: 200px;
+  background-color: white;
+}
+
+.direction-select .MuiSelect-select {
+  width: 200px;
+  background-color: white;
+}
+
+.hide {
+  display: none;
+}
