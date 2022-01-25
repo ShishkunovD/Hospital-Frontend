@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from "../Header"
 import Filling from "./Filling";
 import Reseptions from "./Reseptions";
+import SortReseption from './SortReseption';
 
 const MainPage = () => {
   const obj = {
@@ -13,6 +14,30 @@ const MainPage = () => {
     'Аганесов Александр Георгиевич', 
     'Белов Юрий Владимирович', 
     'Давыдов Михаил Иванович'
+  ];
+
+  const choiceSort = [
+    {
+      ru: 'Имя',
+      en: 'name'
+    },
+    {
+      ru: 'Врач',
+      en: 'doctor'
+    },
+    {
+      ru: 'Дата',
+      en: 'date'
+    },
+    {
+      ru: 'None',
+      en: 'None'
+    }
+  ];
+
+  const direction = [
+    'По возрастанию',
+    'По убыванию'
   ];
 
   const dateNow = new Date();
@@ -40,6 +65,14 @@ const MainPage = () => {
           doctors={ doctors }
           inputField={ inputField }
           setInputField={ setInputField }
+        />
+      </div>
+      <div>
+        <SortReseption 
+          choiceSort={ choiceSort }
+          direction={ direction }
+          reseptions={ reseptions }
+          setReseptions={ setReseptions }
         />
       </div>
       <div className='reseptions'>
