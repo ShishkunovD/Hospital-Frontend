@@ -24,15 +24,12 @@
 .sort-select .MuiSelect-select {
   width: 200px;
   background-color: white;
-  
 }
 
 .direction-select .MuiSelect-select {
   width: 200px;
   background-color: white;
 }
-
-
 
 .hide {
   display: none;

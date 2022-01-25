@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from "../Header"
 import Filling from "./Filling";
 import Reseptions from "./Reseptions";
-import SortReseption from './SortReseption';
+import SortReseption from "./SortReseption";
 
 const MainPage = () => {
   const obj = {
@@ -36,8 +36,14 @@ const MainPage = () => {
   ];
 
   const direction = [
-    'По возрастанию',
-    'По убыванию'
+    {
+      ru: 'По возрастанию',
+      en: 'asc'
+    },
+    {
+      ru: 'По убыванию',
+      en: 'desc'
+    }
   ];
 
   const dateNow = new Date();
@@ -60,30 +66,30 @@ const MainPage = () => {
       <Header obj={ obj } />
       <div className="main-container">
         <Filling 
-          reseptions={ reseptions }
-          setReseptions={ setReseptions }
-          doctors={ doctors }
-          inputField={ inputField }
-          setInputField={ setInputField }
+          reseptions={reseptions}
+          setReseptions={setReseptions}
+          doctors={doctors}
+          inputField={inputField}
+          setInputField={setInputField}
         />
       </div>
       <div>
         <SortReseption 
-          choiceSort={ choiceSort }
-          direction={ direction }
-          reseptions={ reseptions }
-          setReseptions={ setReseptions }
+          choiceSort={choiceSort}
+          direction={direction}
+          reseptions={reseptions}
+          setReseptions={setReseptions}
         />
       </div>
       <div className='reseptions'>
         <Reseptions 
-          reseptions={ reseptions } 
-          elemArray={ reseptions[indexReseption] }
+          reseptions={reseptions} 
+          elemArray={reseptions[indexReseption]}
           setIndexReseption={setIndexReseption}
-          doctors={ doctors }
-          setInputField={ setInputField }
-          inputField={ inputField }
-          setReseptions={ setReseptions }
+          doctors={doctors}
+          setInputField={setInputField}
+          inputField={inputField}
+          setReseptions={setReseptions}
         />
       </div>
     </div>

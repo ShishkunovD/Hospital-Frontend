@@ -14,11 +14,11 @@ const SortReseption = ({
   const objText = {
     sortInText: 'Сортировать по:',
     directionText: 'Направление:',
-    Ascending: 'По возрастанию',
-    Descending: 'По убыванию'
+    Ascending: 'asc',
+    Descending: 'desc'
   }
 
-  const {sortInText, directionText, Ascending, Descending} = objText;
+  const { sortInText, directionText, Ascending, Descending } = objText;
   const auth = useContext(AuthContext);
 
   //Hook for value sort
@@ -42,17 +42,16 @@ const SortReseption = ({
   const checkSelectValue = async (e) => {
     const eventSortIn = e.target.value;
     if (eventSortIn  === 'None') {
-      await axios.get('http://localhost:8000/api/reseption/getAllReseption', {
-        headers: {
-          Authorization: `Bearer ${auth.isAuth}`
+      reseptions.sort((a, b) => {
+        if (a._id < b._id) {
+          return -1;
         }
-      }).then(res => {
-        setReseptions(res.data.data);
-        setValueSort('None');
       });
+      setReseptions([...reseptions]);
+      setValueSort('None');
     } else {
       sortReseptions(eventSortIn , valueDirection);
-      setValueSort(eventSortIn );
+      setValueSort(eventSortIn);
     }
   }
 
@@ -83,7 +82,7 @@ const SortReseption = ({
             value={valueDirection}
             onChange={(e) => checkSelectDirection(e)}
           >
-            {direction.map((item, index)=> <MenuItem key={index} value={item}>{item}</MenuItem>)}
+            {direction.map((item, index)=> <MenuItem key={index} value={item.en}>{item.ru}</MenuItem>)}
           </TextField>
       </div>
     </div>  
