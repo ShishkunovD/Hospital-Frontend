@@ -3,6 +3,7 @@ import Header from "../Header"
 import Filling from "./Filling";
 import Reseptions from "./Reseptions";
 import SortReseption from "./SortReseption";
+import FilterReseptions from './FilterReseptions';
 
 const MainPage = () => {
   const obj = {
@@ -58,12 +59,18 @@ const MainPage = () => {
   // Array with our reseptions 
   const [reseptions, setReseptions] = useState([]);
 
+  // Array for working with filtration our reseptions
+  const [reseptionsFilter, setReseptionsFilter] = useState([]);
+
   // Array for get chosen reseption
   const [indexReseption, setIndexReseption] = useState('');
 
+  // state for open our filer component
+  const [showFilter, setShowFilter] = useState(false);
+
   return (
     <div className="main-page">
-      <Header obj={ obj } />
+      <Header obj={obj} />
       <div className="main-container">
         <Filling 
           reseptions={reseptions}
@@ -71,6 +78,7 @@ const MainPage = () => {
           doctors={doctors}
           inputField={inputField}
           setInputField={setInputField}
+          setReseptionsFilter={setReseptionsFilter}
         />
       </div>
       <div>
@@ -79,8 +87,15 @@ const MainPage = () => {
           direction={direction}
           reseptions={reseptions}
           setReseptions={setReseptions}
+          showFilter={showFilter}
+          setShowFilter={setShowFilter}
         />
       </div>
+      {showFilter && <FilterReseptions 
+        setShowFilter={setShowFilter}
+        setReseptions={setReseptions}
+        reseptionsFilter={reseptionsFilter}
+      />}
       <div className='reseptions'>
         <Reseptions 
           reseptions={reseptions} 

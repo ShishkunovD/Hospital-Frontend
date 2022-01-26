@@ -14,6 +14,10 @@
   justify-content: space-around;
 }
 
+.sort-in-title {
+  font-size: 18px;
+}
+
 .direction-block {
   display: flex;
   align-items: center;
@@ -29,6 +33,17 @@
 .direction-select .MuiSelect-select {
   width: 200px;
   background-color: white;
+}
+
+.plus-block {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 260px;
+}
+
+.plus-button {
+  cursor: pointer;
 }
 
 .hide {

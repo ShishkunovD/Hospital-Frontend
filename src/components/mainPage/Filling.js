@@ -18,7 +18,8 @@ const Filling = ({
   setReseptions,
   doctors,
   inputField,
-  setInputField }) => {
+  setInputField,
+  setReseptionsFilter }) => {
 
   const { inputName, selectDoctor, date, complaint } = inputField;
 
@@ -37,10 +38,11 @@ const Filling = ({
         Authorization: `Bearer ${auth.isAuth}`
       }
     }).then(res => {
+      setReseptionsFilter(res.data.data);
       setReseptions(res.data.data);
     });
     
-  }, [auth.isAuth, setReseptions, checkAddButton]);
+  }, [auth.isAuth, setReseptions, checkAddButton, setReseptionsFilter]);
 
   const addReseption = async () => {
     await axios.post('http://localhost:8000/api/reseption/createReseption', {
