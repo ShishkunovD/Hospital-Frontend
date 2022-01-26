@@ -23,35 +23,25 @@ const FilterReseptions = ({
   const dateFormatMax = moment(maxDateState).format('DD.MM.YYYY');
 
   const filterReseptions = () => {
-    if (dateFormatMin !== 'Invalid date' && dateFormatMax !== 'Invalid date') {
-      const arrayMin = dateFormatMin.split('.').reverse();
-      const arrayMax = dateFormatMax.split('.').reverse();
-      const resultReseptions = reseptionsFilter.filter(item => {
-        const ourDate = item.date.split('.').reverse().join('');
+    const arrayMin = dateFormatMin.split('.').reverse();
+    const arrayMax = dateFormatMax.split('.').reverse();
+    const resultReseptions = reseptionsFilter.filter(item => {
+      const ourDate = item.date.split('.').reverse().join('');
+      if (moment(minDateState).isValid() && moment(maxDateState).isValid()) {
         if (ourDate >= arrayMin.join('') && ourDate <= arrayMax.join('')) {
           return true;
         }
-      });
-      setReseptions(resultReseptions);
-    } else if (dateFormatMin !== 'Invalid date') {
-      const arrayMin = dateFormatMin.split('.').reverse();
-      const resultReseptions = reseptionsFilter.filter(item => {
-        const ourDate = item.date.split('.').reverse().join('');
+      } else if (moment(minDateState).isValid()) {
         if (ourDate >= arrayMin.join('')) {
           return true;
         }
-      });
-      setReseptions(resultReseptions);
-    } else if (dateFormatMax !== 'Invalid date') {
-      const arrayMax = dateFormatMax.split('.').reverse();
-      const resultReseptions = reseptionsFilter.filter(item => {
-        const ourDate = item.date.split('.').reverse().join('');
+      } else if (moment(maxDateState).isValid()) {
         if (ourDate <= arrayMax.join('')) {
           return true;
         }
-      });
-      setReseptions(resultReseptions);
-    }
+      }
+    });
+    setReseptions(resultReseptions);
   }
 
   const closeFilter = async () => {
