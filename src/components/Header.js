@@ -5,7 +5,6 @@ import logo from '../Images/Vector.png';
 import '../Style/header.css';
 import '../Style/header-media.css';
 
-
 const Header = ({ obj }) => {
   const auth = useContext(AuthContext);
 
@@ -28,7 +27,7 @@ const Header = ({ obj }) => {
       <button className={logoStrN === 'Receptions' ? 'button-exit' : 'hide'} >
         <Link 
           to='/authorization' 
-          onClick={() => {logoutHandler()}}
+          onClick={() => logoutHandler()}
         >
           Выход
         </Link>
@@ -36,7 +35,7 @@ const Header = ({ obj }) => {
       <button className={logoStrN === 'Receptions' ? 'button-exit-small' : 'hide'} >
         <Link 
           to='/authorization' 
-          onClick={() => {logoutHandler()}}
+          onClick={() => logoutHandler()}
         >
           X
         </Link>

@@ -56,7 +56,12 @@ const Filling = ({
         Authorization: `Bearer ${auth.isAuth}`
       }
     }).then(res => {
-      setInputField({...inputField, inputName: '', selectDoctor: '', date: new Date(), complaint: ''});
+      setInputField({
+        ...inputField, 
+        inputName: '', 
+        selectDoctor: '', 
+        date: new Date(), 
+        complaint: ''});
       reseptions.push(res.data.data);
       setReseptions([...reseptions]);
     });

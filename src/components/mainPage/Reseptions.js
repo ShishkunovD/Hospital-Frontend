@@ -27,7 +27,10 @@ const Reseptions = ({
       <Table >
         <TableHead  className='table-header'>
           <TableRow>
-            {headerTable.map((item, index) => <TableCell className='table-cell-header' key={index}>{item}</TableCell>)}
+            {headerTable.map((item, index) => <TableCell 
+              className='table-cell-header' 
+              key={index}>{item}
+            </TableCell>)}
           </TableRow>
         </TableHead>
         <TableBody>
