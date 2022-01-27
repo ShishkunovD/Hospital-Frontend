@@ -1,0 +1,44 @@
+.filter-block {
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-block {
+  display: flex;
+  justify-content: space-between;
+  width: 45%;
+}
+
+.first-calendar-block, .second-calendar-block {
+  display: flex;
+  align-items: center;
+  width: 290px;
+  justify-content: space-between;
+}
+
+.second-calendar-block {
+  width: 300px;
+}
+
+.btn-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 500px;
+  margin-right: 120px;
+}
+
+.btn-filter {
+  width: 208px;
+  height: 53px;
+  cursor: pointer;
+}
+
+.delete-filter {
+  width: 24px;
+  height: 30px;
+  cursor: pointer;
+}

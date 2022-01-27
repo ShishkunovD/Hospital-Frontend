@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { MenuItem, TextField } from '@mui/material';
-import { AuthContext } from '../../context/AuthContext';
+import plus from '../../Images/Plus.png';
 import '../../Style/main-style/sort.css';
 import '../../Style/main-style/sort-media.css';
 
@@ -9,17 +8,19 @@ const SortReseption = ({
   choiceSort,
   direction,
   reseptions,
-  setReseptions }) => {
+  setReseptions,
+  showFilter,
+  setShowFilter }) => {
 
   const objText = {
     sortInText: 'Сортировать по:',
     directionText: 'Направление:',
     Ascending: 'asc',
-    Descending: 'desc'
+    Descending: 'desc',
+    addFilterText: 'Добавить фильтр по дате:'
   }
 
-  const { sortInText, directionText, Ascending, Descending } = objText;
-  const auth = useContext(AuthContext);
+  const {sortInText, directionText, Ascending, Descending, addFilterText} = objText;
 
   //Hook for value sort
   const [valueSort, setValueSort] = useState('');
@@ -84,6 +85,12 @@ const SortReseption = ({
           >
             {direction.map((item, index)=> <MenuItem key={index} value={item.en}>{item.ru}</MenuItem>)}
           </TextField>
+      </div>
+      <div className={showFilter ? 'hide' : 'plus-block'}>
+        <div>{addFilterText}</div>
+        <div className='plus-button'>
+          <img onClick={() => setShowFilter(true)} src={plus} alt='add filter'/>
+        </div>
       </div>
     </div>  
   )

@@ -1,4 +1,4 @@
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 1105px) {
   .sort-in-block, .direction-block {
     display: flex;
     flex-direction: column;
@@ -19,10 +19,15 @@
 
   .direction-block {
     width: 246px;
+    margin-right: 50px;
+  }
+  
+  .plus-block {
+    margin-top: 20px;
   }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 900px) {
   .main-sort-block {
     display: flex;
     flex-direction: column;
@@ -45,6 +50,18 @@
   .sort-in-title, .direction-title {
     margin-left: 0px;
   }
+
+  .direction-block {
+    margin-right: 0;
+  }
+
+  .plus-block {
+    margin-top: 0px;
+  }
+
+  .main-sort-block {
+    height: 220px;
+  }
 }
 
 @media screen and (max-width: 430px) {
@@ -63,6 +80,6 @@
   }
 
   .main-sort-block {
-    height: 170px;
+    height: 230px;
   }
 }
