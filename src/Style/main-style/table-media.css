@@ -1,0 +1,29 @@
+@media screen and (max-width: 1255px) {
+  .table-container.MuiTableContainer-root {
+    height: 430px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .table-container.MuiTableContainer-root {
+    height: 390px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .table-container.MuiTableContainer-root {
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .table-container.MuiTableContainer-root {
+    height: 245px;
+  }
+}
+
+@media screen and (max-width: 565px) {
+  .table-container.MuiTableContainer-root {
+    overflow-x: auto;
+  }
+}

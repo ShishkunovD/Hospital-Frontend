@@ -1,9 +1,8 @@
-.table-container {
+.table-container.MuiTableContainer-root {
   margin: 24px auto 0 auto;
-}
-
-.css-rqglhn-MuiTable-root {
-  width: 95px;
+  width: 95%;
+  overflow-x: hidden;
+  height: 470px;
 }
 
 .table {
@@ -20,16 +19,36 @@
   margin-top: 24px;
 }
 
+.table-cell-header.MuiTableCell-root {
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.one-cell.MuiTableCell-root {
+  text-align: center;
+  border-bottom: 1px solid white;
+  border-left: 1px solid black;
+  border-right: 2px solid black;
+}
+
+.delete-edit.MuiTableCell-root {
+  width: 60px;
+}
+
 th {
   display: flex;
   justify-content: space-between;
 }
 
 .one-cell {
-  border: 1px solid black;
   background-color: white;
   display: flex;
   align-items: center;
+}
+
+.cell-complaints.MuiTableCell-root {
+  width: 215px;
+  word-break: break-word;
 }
 
 .edlete-edit {
@@ -39,7 +58,8 @@ th {
 
 .container-delete-edit {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  width: 50px;
 }
 
 .reseptions {

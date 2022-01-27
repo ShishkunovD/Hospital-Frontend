@@ -56,7 +56,12 @@ const Filling = ({
         Authorization: `Bearer ${auth.isAuth}`
       }
     }).then(res => {
-      setInputField({...inputField, inputName: '', selectDoctor: '', complaint: ''});
+      setInputField({
+        ...inputField, 
+        inputName: '', 
+        selectDoctor: '', 
+        date: new Date(), 
+        complaint: ''});
       reseptions.push(res.data.data);
       setReseptions([...reseptions]);
     });
@@ -104,7 +109,7 @@ const Filling = ({
               className="input-complaints"
               label="Жалобы" 
               variant="outlined"
-              defaultValue={complaint}
+              value={complaint}
               onChange = {(e) => setInputField({...inputField, complaint: e.target.value})}
             />
           </div>

@@ -77,6 +77,12 @@
   }
 }
 
+@media screen and (max-width: 605px) {
+  .main-page {
+    height: 125vh;
+  }
+}
+
 @media screen and (max-width: 330px) {
   .filter-block {
     height: 230px;

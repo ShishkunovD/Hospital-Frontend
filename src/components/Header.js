@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from '../context/AuthContext';
 import logo from '../Images/Vector.png';
 import '../Style/header.css';
-
+import '../Style/header-media.css';
 
 const Header = ({ obj }) => {
   const auth = useContext(AuthContext);
@@ -27,9 +27,17 @@ const Header = ({ obj }) => {
       <button className={logoStrN === 'Receptions' ? 'button-exit' : 'hide'} >
         <Link 
           to='/authorization' 
-          onClick={() => {logoutHandler()}}
+          onClick={() => logoutHandler()}
         >
           Выход
+        </Link>
+      </button>
+      <button className={logoStrN === 'Receptions' ? 'button-exit-small' : 'hide'} >
+        <Link 
+          to='/authorization' 
+          onClick={() => logoutHandler()}
+        >
+          X
         </Link>
       </button>
     </div>

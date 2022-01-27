@@ -1,6 +1,11 @@
 .main-page {
   background-color: #C5E9FF;
-  margin-bottom: 10px;
+  height: 100vh;
+}
+
+.main-page-filter {
+  background-color: #C5E9FF;
+  height: 145vh;
 }
 
 .main-container {

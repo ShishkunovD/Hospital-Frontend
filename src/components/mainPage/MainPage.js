@@ -69,7 +69,7 @@ const MainPage = () => {
   const [showFilter, setShowFilter] = useState(false);
 
   return (
-    <div className="main-page">
+    <div className={showFilter ? "main-page-filter" : "main-page"}>
       <Header obj={obj} />
       <div className="main-container">
         <Filling 
@@ -96,17 +96,15 @@ const MainPage = () => {
         setReseptions={setReseptions}
         reseptionsFilter={reseptionsFilter}
       />}
-      <div className='reseptions'>
-        <Reseptions 
-          reseptions={reseptions} 
-          elemArray={reseptions[indexReseption]}
-          setIndexReseption={setIndexReseption}
-          doctors={doctors}
-          setInputField={setInputField}
-          inputField={inputField}
-          setReseptions={setReseptions}
-        />
-      </div>
+      <Reseptions 
+        reseptions={reseptions} 
+        elemArray={reseptions[indexReseption]}
+        setIndexReseption={setIndexReseption}
+        doctors={doctors}
+        setInputField={setInputField}
+        inputField={inputField}
+        setReseptions={setReseptions}
+      />
     </div>
   )
 }

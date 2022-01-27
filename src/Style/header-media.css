@@ -1,0 +1,24 @@
+@media screen and (max-width: 565px) {
+  .button-exit {
+    display: none;
+  }
+
+  .button-exit-small {
+    display: flex;
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-color: white;
+    border-radius: 10px;
+    margin-right: 35px;
+    cursor: pointer;
+  }
+
+  .button-exit-small a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+  }
+}
