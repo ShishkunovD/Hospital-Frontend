@@ -28,17 +28,11 @@ const FilterReseptions = ({
     const resultReseptions = reseptionsFilter.filter(item => {
       const ourDate = item.date.split('.').reverse().join('');
       if (moment(minDateState).isValid() && moment(maxDateState).isValid()) {
-        if (ourDate >= arrayMin.join('') && ourDate <= arrayMax.join('')) {
-          return true;
-        }
+        return ourDate >= arrayMin.join('') && ourDate <= arrayMax.join('');
       } else if (moment(minDateState).isValid()) {
-        if (ourDate >= arrayMin.join('')) {
-          return true;
-        }
+        return ourDate >= arrayMin.join('');
       } else if (moment(maxDateState).isValid()) {
-        if (ourDate <= arrayMax.join('')) {
-          return true;
-        }
+        return (ourDate <= arrayMax.join(''));
       }
     });
     setReseptions(resultReseptions);
