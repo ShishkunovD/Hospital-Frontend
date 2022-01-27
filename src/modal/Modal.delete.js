@@ -23,10 +23,11 @@ const ModalDelete = ({
         Authorization: `Bearer ${auth.isAuth}`
       }
     }).then(res => {
+      setOpenModalDelete(false);
       setReseptions(res.data.data);
     });
   }
-
+  
   const modalCloseDelete = () => {
     setOpenModalDelete(false);
   }

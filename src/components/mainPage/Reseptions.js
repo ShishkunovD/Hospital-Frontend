@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import OneReseption from './OneReseption';
 import '../../Style/main-style/table.css';
+import '../../Style/main-style/table-media.css';
 
 const Reseptions = ({ 
   reseptions,
@@ -22,11 +23,11 @@ const Reseptions = ({
   const headerTable = ['Имя', 'Врач', 'Дата', 'Жалобы', ''];
 
   return (
-    <TableContainer>
-      <Table className='table-container' >
+    <TableContainer className='table-container'>
+      <Table >
         <TableHead  className='table-header'>
           <TableRow>
-            {headerTable.map((item, index) => <TableCell key={index}>{item}</TableCell>)}
+            {headerTable.map((item, index) => <TableCell className='table-cell-header' key={index}>{item}</TableCell>)}
           </TableRow>
         </TableHead>
         <TableBody>

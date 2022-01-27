@@ -189,7 +189,8 @@ const register = async () => {
             defaultValue={password} 
             className='password' 
             name='password' 
-            placeholder='Password' 
+            placeholder='Password'
+            type='password'
             onBlur={(e) => onBlurHandler(e)} 
             onKeyUp={(e) => onChangeInputPassword(e)}  
           />
@@ -208,7 +209,8 @@ const register = async () => {
             defaultValue={passwordRepeatS}
             className='password' 
             name='passwordRepeat' 
-            placeholder='Password' 
+            placeholder='Password'
+            type='password'
             onBlur={(e) => onBlurHandler(e)} 
             onKeyUp = {(e) => onChangePasswordRepeat(e)}
           />

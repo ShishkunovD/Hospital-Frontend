@@ -39,7 +39,7 @@ const OneReseption = ({
       <TableCell className='one-cell'>{name}</TableCell>
       <TableCell className='one-cell'>{doctor}</TableCell>
       <TableCell className='one-cell'>{date}</TableCell>
-      <TableCell className='one-cell'>{complaints}</TableCell>
+      <TableCell className='one-cell cell-complaints'>{complaints}</TableCell>
       <TableCell className='one-cell delete-edit'>
         <div className='container-delete-edit'>
           <span>

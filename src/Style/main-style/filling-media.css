@@ -112,7 +112,7 @@
   }
 }
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 480px) {
   .input-name .MuiOutlinedInput-root, 
   .input-doctor .MuiOutlinedInput-root, 
   .input-complaints .MuiOutlinedInput-root, 
